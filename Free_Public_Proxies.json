@@ -1,1 +1,26 @@
-
+[
+  {
+    "type": "socks5",
+    "host": "113.166.93.239",
+    "port": "5678",
+    "country": "Vietnam"
+  },
+  {
+    "type": "http",
+    "host": "194.233.72.63",
+    "port": "3128",
+    "country": "Germany"
+  },
+  {
+    "type": "socks5",
+    "host": "98.173.189.92",
+    "port": "8080",
+    "country": "Canada"
+  },
+  {
+    "type": "http",
+    "host": "8.210.155.19",
+    "port": "80",
+    "country": "France"
+  }
+]
