@@ -126,10 +126,6 @@
 
 ---
 
-This utility converts raw blocklist rules into Manifest V3 rules and updates the metadata timestamps.
-
----
-
 ## 🏆 Credits & Attributions
 
 * **AdBlocker & Shield Rules:** Powered by [HaGeZi DNS Blocklists](https://github.com/hagezi/dns-blocklists)
