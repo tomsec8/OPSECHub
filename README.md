@@ -115,14 +115,19 @@
 ## 📥 Installation
 
 ### Developer Mode (Unpacked Extension)
-1. Clone or download this repository:
+1. Download the latest `Source code (zip)` from the [Releases Page](https://github.com/tomsec8/OPSECHub/releases) and extract it, or clone this repository:
    ```bash
    git clone [https://github.com/tomsec8/OPSECHub.git](https://github.com/tomsec8/OPSECHub.git)
    ```
-2. Open Google Chrome and navigate to `chrome://extensions`.
-3. Enable **Developer mode** in the top right corner.
-4. Click **Load unpacked** and select the `OPSECHub/` folder.
-5. Pin **OPSECHub** to your toolbar for instant access!
+2. **Important:** Generate the initial AdBlocker rulesets by running the updater utility:
+   ```bash
+   python tools/updater.py
+   ```
+   *(This downloads and converts the latest blocklists into Chrome MV3 format).*
+3. Open Google Chrome and navigate to `chrome://extensions`.
+4. Enable **Developer mode** in the top right corner.
+5. Click **Load unpacked** and select the `OPSECHub/` folder.
+6. Pin **OPSECHub** to your toolbar for instant access!
 
 ### 🔄 Ruleset Updater Utility
 OPSECHub includes an external Python utility to keep static DNR rulesets synchronized with upstream blocklist releases.
