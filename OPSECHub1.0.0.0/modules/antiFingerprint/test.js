@@ -1,7 +1,7 @@
 const brw = typeof browser !== 'undefined' ? browser : chrome;
 
 // Session Seed for simulating the background script behavior
-let SESSION_SEED_VAL = (crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296.0);
+let SESSION_SEED_VAL = Math.random();
 let SESSION_SEED = Math.floor(SESSION_SEED_VAL * 1000000);
 
 function djb2Hash(str) {

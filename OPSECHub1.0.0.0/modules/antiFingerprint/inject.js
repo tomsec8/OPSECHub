@@ -1,8 +1,8 @@
 // Runs in the page's MAIN world context for Noise Mode
 console.log('[OPSECHub] antiFingerprint.js INJECTED AND RUNNING!');
 (function() {
-    // 1. Session Deterministic Seed (Unbiased float scaling)
-    const SESSION_SEED_VAL = (crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296.0);
+    // 1. Session Deterministic Seed (Noise PRNG)
+    const SESSION_SEED_VAL = Math.random();
     const SESSION_SEED = Math.floor(SESSION_SEED_VAL * 1000000);
     
     function seededRandom(str) {
