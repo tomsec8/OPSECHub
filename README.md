@@ -137,44 +137,6 @@ python tools/updater.py
 ```
 This utility converts raw blocklist rules into Manifest V3 rules and updates the metadata timestamps.
 
----
-## 📊 Extension Architecture
-
-OPSECHub/
-├── README.md                 # Main repository documentation & overview
-├── LICENSE                   # MIT Open Source License
-├── .gitignore                # Git exclusion rules (build artifacts & heavy rulesets)
-├── screenshots/              # Interface screenshots & feature previews
-├── tools/                    # External Python utilities
-│   ├── updater.py            # Automated DNR blocklist compilation utility
-│   └── updater_config.json   # Blocklist sources & category definitions
-└── OPSECHub/                 # Core Chrome Manifest V3 Extension Source Code
-    ├── manifest.json         # Manifest V3 setup, permissions, & DNR mappings
-    ├── background.js        # Background Service Worker (Proxy, DNR, Message Handlers)
-    ├── content.js           # Main Content Script injector
-    ├── popup.html / .js     # Interactive toolbar popup & real-time analytics
-    ├── options.html / .js   # Main settings dashboard & tools control center
-    ├── libs/                 # High-performance third-party libraries (PDF, JSZip, Exif)
-    ├── modules/              # Core OPSEC Protection Modules
-    │   ├── antiFingerprint/  # Canvas, WebGL, AudioContext & Font protection
-    │   ├── userAgentSpoof/   # User-Agent & Client Hints identity spoofing
-    │   ├── hardwareMask/     # Hardware Concurrency, Memory, & GPU renderer masking
-    │   ├── proxy/            # Multi-protocol Proxy & Web VPN Manager
-    │   ├── webrtc/           # WebRTC STUN/TURN IP leak blocker
-    │   ├── locationBlock/    # Geolocation API spoofer & blocker
-    │   ├── mediaBlock/       # Camera & Microphone enumeration guard
-    │   ├── clipboardGuard/   # System clipboard hijacking shield
-    │   ├── referrerControl/  # Strict HTTP Referrer policy enforcer
-    │   ├── privacyHeaders/   # Tracking headers stripping engine
-    │   ├── searchStealth/    # Search query tracking parameters sanitizer
-    │   ├── googleTelemetry/  # Background Chrome telemetry blocker
-    │   └── extraTools/       # Specialized security utilities & diagnostic tools
-    └── rules/                # DeclarativeNetRequest blocklists & metadata
-        ├── Core/             # Compiled HaGeZi DNR JSON rulesets (5 tiers)
-        └── metadata.json     # Dynamic rules count & release timestamps
-
----
-
 ## 🏆 Credits & Attributions
 
 * **AdBlocker & Shield Rules:** Powered by [HaGeZi DNS Blocklists](https://github.com/hagezi/dns-blocklists)
