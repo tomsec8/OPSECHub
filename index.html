@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OPSECHub — OPSEC & Privacy Shield</title>
+<meta name="description" content="OPSECHub is a browser-based OPSEC and privacy suite: adblocking, threat intel, anti-fingerprinting, proxy routing, and a full OSINT toolkit — zero telemetry." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg: #14171b;
+    --bg-panel: #1a1f25;
+    --bg-panel-alt: #20262d;
+    --line: #333c46;
+    --line-soft: #262d35;
+    --paper: #e9e5d8;
+    --paper-dim: #a6a89c;
+    --text-dim: #838a82;
+    --red: #b8402f;
+    --red-dim: #7a3229;
+    --green: #7c9a72;
+    --amber: #c98a2c;
+    --radius: 2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* paper grain / scanline texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  h1,h2,h3{
+    font-family:'Rajdhani', sans-serif;
+    font-weight:700;
+    letter-spacing:0.01em;
+    margin:0;
+    color:var(--paper);
+    text-transform:uppercase;
+  }
+
+  .stamp{
+    font-family:'Special Elite', monospace;
+    text-transform:uppercase;
+  }
+
+  code, .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- reticle bracket signature ---------- */
+  .reticle{
+    position:relative;
+  }
+  .reticle::before, .reticle::after,
+  .reticle .rt-r::before, .reticle .rt-r::after{
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border-color:var(--red);
+    border-style:solid;
+    opacity:0.85;
+  }
+  .reticle::before{ top:-1px; left:-1px; border-width:2px 0 0 2px; }
+  .reticle::after{ top:-1px; right:-1px; border-width:2px 2px 0 0; }
+  .reticle .rt-r{ position:absolute; inset:0; }
+  .reticle .rt-r::before{ bottom:-1px; left:-1px; border-width:0 0 2px 2px; }
+  .reticle .rt-r::after{ bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+
+  /* ---------- nav ---------- */
+  .tabbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,23,27,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .tabbar-inner{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+    display:flex;
+    align-items:center;
+    gap:2px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .tabbar-inner::-webkit-scrollbar{display:none;}
+  .tabbar .brand{
+    font-family:'Rajdhani', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:0.06em;
+    padding:14px 16px 14px 0;
+    white-space:nowrap;
+    color:var(--paper);
+    text-decoration:none;
+  }
+  .tabbar .brand b{color:var(--red);}
+  .tab-link{
+    white-space:nowrap;
+    padding:16px 12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    text-decoration:none;
+    border-bottom:2px solid transparent;
+  }
+  .tab-link:hover{color:var(--paper); border-bottom-color:var(--line);}
+  .tab-spacer{flex:1;}
+  .tab-cta{
+    white-space:nowrap;
+    margin:10px 0;
+    padding:7px 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--paper);
+    border:1px solid var(--line);
+    text-decoration:none;
+  }
+  .tab-cta:hover{border-color:var(--red); color:var(--red);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    z-index:2;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:48px;
+    align-items:start;
+  }
+  .case-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--text-dim);
+    letter-spacing:0.12em;
+    margin-bottom:18px;
+  }
+  .case-number span{color:var(--red);}
+  h1.hero-title{
+    font-size:clamp(2.4rem, 5vw, 3.8rem);
+    line-height:1.02;
+    margin-bottom:18px;
+  }
+  h1.hero-title .accent{color:var(--red);}
+  .hero-sub{
+    max-width:56ch;
+    color:var(--paper-dim);
+    font-size:1.05rem;
+    margin-bottom:32px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border:1px solid var(--line);
+    color:var(--paper);
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .btn-primary{
+    background:var(--red);
+    border-color:var(--red);
+    color:#14171b;
+    font-weight:600;
+  }
+  .btn-primary:hover{background:#c94a37;}
+  .btn-ghost:hover{border-color:var(--green); color:var(--green);}
+
+  .hero-stats{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;
+    font-family:'Rajdhani', sans-serif;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--paper);
+  }
+  .stat span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+
+  .stamp-badge{
+    justify-self:end;
+    padding:20px 22px;
+    transform:rotate(-3deg);
+    text-align:center;
+    color:var(--red);
+    white-space:nowrap;
+  }
+  .stamp-badge .stamp{ font-size:1.15rem; line-height:1.5; }
+  .stamp-badge .divider{ border-top:1px dashed var(--red-dim); margin:6px 0; opacity:0.7;}
+
+  /* ---------- section shell ---------- */
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .eyebrow .file-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    color:var(--red);
+    border:1px solid var(--red-dim);
+    padding:3px 9px;
+  }
+  .eyebrow .rule{ flex:1; height:1px; background:var(--line); }
+  .section-title{
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+    margin-bottom:14px;
+  }
+  .section-lede{
+    max-width:68ch;
+    color:var(--paper-dim);
+    margin-bottom:44px;
+    font-size:1rem;
+  }
+
+  /* ---------- screenshots ---------- */
+  .film-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  @media (max-width:900px){ .film-strip{grid-template-columns:repeat(2,1fr);} }
+  .frame{ padding:8px; background:var(--bg-panel); }
+  .frame .shot{
+    aspect-ratio:9/16;
+    overflow:hidden;
+    background:var(--bg-panel-alt);
+    margin-bottom:4px;
+  }
+  .frame .shot img{ width:100%; height:100%; object-fit:cover; object-position:top; }
+  .frame figcaption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    padding:2px 2px 6px;
+  }
+
+  /* ---------- feature cards ---------- */
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); }
+  .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); }
+  @media (max-width:900px){ .grid-3{grid-template-columns:1fr;} .grid-2{grid-template-columns:1fr;} }
+  .card{
+    background:var(--bg-panel);
+    padding:28px 26px;
+  }
+  .card .icon{ width:26px; height:26px; margin-bottom:16px; color:var(--red); }
+  .card h3{
+    font-size:1.02rem;
+    margin-bottom:9px;
+    letter-spacing:0.02em;
+  }
+  .card p{
+    color:var(--paper-dim);
+    font-size:0.9rem;
+    margin:0;
+  }
+  .card p + p{ margin-top:8px; }
+  .card ul{
+    margin:8px 0 0; padding-left:18px; color:var(--paper-dim); font-size:0.88rem;
+  }
+  .card li{ margin-bottom:4px; }
+  .card .tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--green);
+    border:1px solid var(--green);
+    opacity:0.75;
+    padding:2px 6px;
+    margin-bottom:12px;
+  }
+
+  /* tool grid smaller */
+  .tool-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); }
+  @media (max-width:900px){ .tool-grid{grid-template-columns:repeat(2,1fr);} }
+  .tool{
+    background:var(--bg-panel);
+    padding:22px 18px;
+  }
+  .tool .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--red);
+    display:block;
+    margin-bottom:10px;
+  }
+  .tool h4{
+    font-family:'Rajdhani', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    text-transform:none;
+    margin:0 0 6px;
+    color:var(--paper);
+  }
+  .tool p{ margin:0; font-size:0.82rem; color:var(--paper-dim); }
+
+  /* ---------- permissions table ---------- */
+  .assurance{
+    border:1px solid var(--green);
+    background:rgba(124,154,114,0.06);
+    padding:18px 20px;
+    margin-bottom:32px;
+    font-size:0.92rem;
+    color:var(--paper);
+  }
+  .assurance b{ color:var(--green); }
+
+  table.perms{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.85rem;
+  }
+  table.perms th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    border-bottom:1px solid var(--line);
+    padding:10px 12px;
+  }
+  table.perms td{
+    border-bottom:1px solid var(--line-soft);
+    padding:11px 12px;
+    color:var(--paper-dim);
+    vertical-align:top;
+  }
+  table.perms td.perm-name{ color:var(--paper); font-family:'IBM Plex Mono', monospace; font-size:0.8rem; white-space:nowrap;}
+  table.perms td.perm-type{ white-space:nowrap; }
+  .req{ color:var(--red); }
+  .opt{ color:var(--amber); }
+  .host{ color:var(--green); }
+  details.perm-toggle > summary{
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:20px;
+    list-style:none;
+  }
+  details.perm-toggle > summary::-webkit-details-marker{ display:none; }
+  details.perm-toggle > summary::before{ content:"▸ "; color:var(--red); }
+  details.perm-toggle[open] > summary::before{ content:"▾ "; }
+
+  /* ---------- install ---------- */
+  .steps{ counter-reset:step; }
+  .step{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:20px;
+    padding:24px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .step:first-child{ border-top:none; }
+  .step .step-num{
+    counter-increment:step;
+    font-family:'Rajdhani', sans-serif;
+    font-weight:700;
+    font-size:1.6rem;
+    color:var(--red);
+  }
+  .step .step-num::before{ content: counter(step, decimal-leading-zero); }
+  .step h4{
+    font-family:'Rajdhani', sans-serif;
+    text-transform:none;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 8px;
+    color:var(--paper);
+  }
+  .step p{ margin:0 0 10px; color:var(--paper-dim); font-size:0.92rem; }
+  pre.code-block{
+    background:#0f1216;
+    border:1px solid var(--line);
+    padding:14px 16px;
+    overflow-x:auto;
+    font-size:0.82rem;
+    color:var(--green);
+    margin:0;
+  }
+  pre.code-block .comment{ color:var(--text-dim); }
+
+  /* ---------- credits ---------- */
+  .credit-list{ columns:2; column-gap:48px; font-size:0.88rem; color:var(--paper-dim); }
+  @media (max-width:700px){ .credit-list{columns:1;} }
+  .credit-list li{ margin-bottom:8px; break-inside:avoid; }
+  .credit-list a{ color:var(--paper); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px;}
+  .credit-list a:hover{ text-decoration-color:var(--red); }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:48px 0 60px;
+    text-align:center;
+  }
+  footer .stamp{
+    color:var(--text-dim);
+    font-size:0.95rem;
+  }
+  footer .foot-links{
+    margin-top:16px;
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  footer .foot-links a{ color:var(--paper-dim); text-decoration:none; }
+  footer .foot-links a:hover{ color:var(--red); }
+
+</style>
+</head>
+<body>
+
+<div class="tabbar">
+  <div class="tabbar-inner">
+    <a class="brand" href="#top"><b>OPSEC</b>HUB</a>
+    <a class="tab-link" href="#preview">01 · Preview</a>
+    <a class="tab-link" href="#security">02 · Security</a>
+    <a class="tab-link" href="#privacy">03 · Privacy</a>
+    <a class="tab-link" href="#network">04 · Network</a>
+    <a class="tab-link" href="#tools">05 · Tools</a>
+    <a class="tab-link" href="#permissions">06 · Permissions</a>
+    <a class="tab-link" href="#install">07 · Install</a>
+    <div class="tab-spacer"></div>
+    <a class="tab-cta" href="https://github.com/tomsec8/OPSECHub" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<div id="top"></div>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="case-number">CASE FILE <span>OPSECHUB / 001</span> — STATUS: ACTIVE — v1.0.0</div>
+      <h1 class="hero-title">Your browser<br>is a <span class="accent">liability.</span><br>Shield it.</h1>
+      <p class="hero-sub">OPSECHub is a zero-telemetry OPSEC and privacy suite for OSINT analysts, cybersecurity professionals, and anyone who'd rather not leak a fingerprint with every request. Adblocking, live threat intel, anti-fingerprinting, proxy routing, and a full toolkit for document sanitization — bundled into one extension.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://github.com/tomsec8/OPSECHub/releases" target="_blank" rel="noopener">Download latest release</a>
+        <a class="btn btn-ghost" href="https://github.com/tomsec8/OPSECHub" target="_blank" rel="noopener">View source</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>5</b><span>Blocklist tiers</span></div>
+        <div class="stat"><b>3</b><span>Live threat feeds</span></div>
+        <div class="stat"><b>10</b><span>OPSEC tools onboard</span></div>
+        <div class="stat"><b>14</b><span>DoH providers checked</span></div>
+        <div class="stat"><b>0</b><span>Data collected</span></div>
+      </div>
+    </div>
+    <div class="stamp-badge reticle"><div class="rt-r"></div>
+      <div class="stamp">Zero<br>Telemetry</div>
+      <div class="divider"></div>
+      <div class="stamp" style="font-size:0.72rem; color:var(--text-dim);">GPL v3.0</div>
+    </div>
+  </div>
+</header>
+
+<section id="preview">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 01</span><div class="rule"></div></div>
+    <h2 class="section-title">Interface preview</h2>
+    <p class="section-lede">Eight views into the control room: the popup, the dashboard, and every module in between.</p>
+    <div class="film-strip">
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/popup.png" alt="OPSECHub popup interface" loading="lazy"></div>
+        <figcaption>Main popup</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/dash.png" alt="OPSECHub control center overview" loading="lazy"></div>
+        <figcaption>Control center</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/options.png" alt="OPSECHub adblocker and security settings" loading="lazy"></div>
+        <figcaption>Adblocker &amp; security</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/privacy.png" alt="OPSECHub privacy and identity settings" loading="lazy"></div>
+        <figcaption>Privacy &amp; identity</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/network.png" alt="OPSECHub network and proxy routing" loading="lazy"></div>
+        <figcaption>Network &amp; proxy</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/threat_intel.png" alt="OPSECHub live threat intelligence" loading="lazy"></div>
+        <figcaption>Threat intelligence</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/header_analyzer.png" alt="OPSECHub security headers analyzer" loading="lazy"></div>
+        <figcaption>Header analyzer</figcaption>
+      </figure>
+      <figure class="frame reticle"><div class="rt-r"></div>
+        <div class="shot"><img src="screenshots/doh_checker.png" alt="OPSECHub DoH leak and resolver checker" loading="lazy"></div>
+        <figcaption>DoH leak checker</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="security">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 02</span><div class="rule"></div></div>
+    <h2 class="section-title">Security</h2>
+    <p class="section-lede">A DeclarativeNetRequest core shield sits underneath everything — five tiered rulesets, dynamic threat feeds, and hardened defaults out of the box.</p>
+  </div>
+  <div class="wrap">
+    <div class="grid-3">
+      <div class="card">
+        <h3>Core shield &amp; adblocker</h3>
+        <p>Five tiered rulesets — Light, Multi, Pro, Pro Plus, Ultimate — from basic to aggressive, backed by HaGeZi DNS blocklists.</p>
+        <ul><li>Compiled rule count &amp; release metadata</li><li>Domain allowlist managed from the dashboard</li></ul>
+      </div>
+      <div class="card">
+        <h3>Live threat intelligence</h3>
+        <p>Dynamic blocklists pulled from PhishTank, OpenPhish, and URLHaus stop fake-protection scams, dynamic-DNS abuse, and known badware hosts.</p>
+      </div>
+      <div class="card">
+        <h3>Cookie &amp; storage guard</h3>
+        <p>Third-party tracking cookies, LocalStorage, and IndexedDB entries are wiped automatically the moment a tab closes.</p>
+      </div>
+      <div class="card">
+        <h3>Force HTTPS</h3>
+        <p>Insecure HTTP requests are intercepted and upgraded to encrypted HTTPS before they leave the browser.</p>
+      </div>
+      <div class="card">
+        <h3>Clickjack &amp; XSS guard</h3>
+        <p>Blocks malicious iframe framing and cross-site scripting attempts before they can execute.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Transparent</span>
+        <h3>Everything is inspectable</h3>
+        <p>Every rule, feed, and threshold is visible and editable from the dashboard — nothing runs as a silent background process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 03</span><div class="rule"></div></div>
+    <h2 class="section-title">Privacy &amp; identity</h2>
+    <p class="section-lede">Fingerprinting doesn't need cookies. OPSECHub masks the hardware and behavioral signals sites use to re-identify you across sessions.</p>
+  </div>
+  <div class="wrap">
+    <div class="grid-3">
+      <div class="card">
+        <h3>Anti-fingerprint engine</h3>
+        <p>Neutralizes Canvas and WebGL fingerprinting with a choice of Blend-In or Block modes.</p>
+      </div>
+      <div class="card">
+        <h3>Identity spoofing</h3>
+        <p>Rotate your User-Agent across Windows Chrome, Mac Safari, Linux Firefox, iOS Safari, and Android Chrome on demand.</p>
+      </div>
+      <div class="card">
+        <h3>Hardware masking</h3>
+        <p>Spoofs CPU core count, RAM stats, and GPU renderer strings to defeat hardware-based profiling.</p>
+      </div>
+      <div class="card">
+        <h3>Sensors &amp; clipboard</h3>
+        <ul>
+          <li><b style="color:var(--paper)">Camera &amp; mic guard</b> — blocks unauthorized enumeration</li>
+          <li><b style="color:var(--paper)">Location guard</b> — spoofs or blocks Geolocation API calls</li>
+          <li><b style="color:var(--paper)">Clipboard protection</b> — shields against silent reads</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Web navigation</h3>
+        <ul>
+          <li><b style="color:var(--paper)">URL sanitizer</b> — strips <code>utm_*</code>, <code>fbclid</code>, and hidden zero-width tracking characters</li>
+          <li><b style="color:var(--paper)">Referrer control</b> — enforces strict-origin policies</li>
+          <li><b style="color:var(--paper)">Privacy headers</b> — strips <code>Sec-CH-UA-Full-Version-List</code>, <code>X-Client-Data</code></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Big tech telemetry</h3>
+        <p>Sanitizes search queries across major engines and strips background telemetry pings — including <code>sendBeacon</code> audit calls to Google.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="network">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 04</span><div class="rule"></div></div>
+    <h2 class="section-title">Network routing</h2>
+    <p class="section-lede">Where your traffic actually goes, and what it looks like from the outside.</p>
+  </div>
+  <div class="wrap">
+    <div class="grid-3">
+      <div class="card">
+        <h3>Proxy &amp; web VPN</h3>
+        <p>Built-in proxy manager with one-click toggling across HTTP, HTTPS, and SOCKS5 endpoints.</p>
+      </div>
+      <div class="card">
+        <h3>WebRTC guard</h3>
+        <p>Enforces strict WebRTC routing so local and public IPs can't leak through STUN/TURN queries.</p>
+      </div>
+      <div class="card">
+        <h3>Decoy traffic generator</h3>
+        <p>Generates background decoy traffic to blur your real browsing pattern from ISPs and local network observers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 05</span><div class="rule"></div></div>
+    <h2 class="section-title">Extra tools</h2>
+    <p class="section-lede">Ten investigation-desk utilities that usually live in ten different tabs, folded into the sidebar.</p>
+  </div>
+  <div class="wrap">
+    <div class="tool-grid">
+      <div class="tool"><span class="num">01</span><h4>Document tracker remover</h4><p>Scans and strips tracking pixels, phone-home URLs, and macros from PDFs and Office files.</p></div>
+      <div class="tool"><span class="num">02</span><h4>Universal metadata remover</h4><p>Cleans hidden EXIF metadata from images and files.</p></div>
+      <div class="tool"><span class="num">03</span><h4>Secure passphrase generator</h4><p>Generates high-entropy, memorable passphrases.</p></div>
+      <div class="tool"><span class="num">04</span><h4>File hash &amp; integrity</h4><p>Computes exact SHA-256 / MD5 checksums for verification.</p></div>
+      <div class="tool"><span class="num">05</span><h4>Document encryptor</h4><p>Encrypts and decrypts sensitive text or documents.</p></div>
+      <div class="tool"><span class="num">06</span><h4>Short link tracer</h4><p>Safely traces shortened URLs without executing their payload.</p></div>
+      <div class="tool"><span class="num">07</span><h4>VirusTotal hash lookup</h4><p>Checks file hashes against the VirusTotal database.</p></div>
+      <div class="tool"><span class="num">08</span><h4>SSL certificate inspector</h4><p>Surfaces deep detail on a target server's SSL/TLS certificate.</p></div>
+      <div class="tool"><span class="num">09</span><h4>CSP &amp; header analyzer</h4><p>Scores HTTP security headers — CSP, HSTS, X-Frame-Options — from A+ to F.</p></div>
+      <div class="tool"><span class="num">10</span><h4>DoH leak checker</h4><p>Probes 14 top secure-DNS providers and measures real-time latency.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="permissions">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 06</span><div class="rule"></div></div>
+    <h2 class="section-title">Permissions &amp; transparency</h2>
+    <p class="section-lede">OPSECHub runs on a zero-telemetry, privacy-first architecture. Every Manifest V3 permission below exists for a specific, disclosed reason.</p>
+    <div class="assurance"><b>Privacy assurance —</b> OPSECHub does not collect, log, track, or exfiltrate any user data, search queries, or browsing history. Every operation runs locally, on your machine.</div>
+
+    <details class="perm-toggle" open>
+      <summary>Full permission breakdown</summary>
+      <table class="perms">
+        <thead><tr><th>Permission</th><th>Type</th><th>Why it's needed</th></tr></thead>
+        <tbody>
+          <tr><td class="perm-name">declarativeNetRequest</td><td class="perm-type req">Required</td><td>Powers the core adblocker shield for domain &amp; tracker blocking.</td></tr>
+          <tr><td class="perm-name">declarativeNetRequestWithHostAccess</td><td class="perm-type req">Required</td><td>Applies rulesets across external domains.</td></tr>
+          <tr><td class="perm-name">declarativeNetRequestFeedback</td><td class="perm-type req">Required</td><td>Reports compiled rule stats and blocked-item counts.</td></tr>
+          <tr><td class="perm-name">webRequest</td><td class="perm-type req">Required</td><td>Intercepts background tracking pings and telemetry beacons.</td></tr>
+          <tr><td class="perm-name">proxy</td><td class="perm-type req">Required</td><td>Runs the built-in proxy manager over HTTP/SOCKS5.</td></tr>
+          <tr><td class="perm-name">privacy</td><td class="perm-type req">Required</td><td>Enforces WebRTC routing policy and referrer control.</td></tr>
+          <tr><td class="perm-name">cookies / browsingData</td><td class="perm-type req">Required</td><td>Lets the cookie guard auto-clean tracking data on tab close.</td></tr>
+          <tr><td class="perm-name">scripting / activeTab</td><td class="perm-type req">Required</td><td>Injects anti-fingerprint noise and the header analyzer.</td></tr>
+          <tr><td class="perm-name">tabs / webNavigation</td><td class="perm-type req">Required</td><td>Applies the URL sanitizer and checks domain allowlists.</td></tr>
+          <tr><td class="perm-name">contentSettings</td><td class="perm-type req">Required</td><td>Manages per-site camera, mic, and geolocation permissions.</td></tr>
+          <tr><td class="perm-name">clipboardWrite</td><td class="perm-type req">Required</td><td>Enables one-click copy of passphrases, hashes, and sanitized URLs.</td></tr>
+          <tr><td class="perm-name">storage / alarms</td><td class="perm-type req">Required</td><td>Persists preferences locally and schedules decoy traffic.</td></tr>
+          <tr><td class="perm-name">downloads</td><td class="perm-type opt">Optional</td><td>Exports diagnostic reports and sanitized files.</td></tr>
+          <tr><td class="perm-name">&lt;all_urls&gt;</td><td class="perm-type host">Host access</td><td>Enforces threat-intelligence blocking across every domain you visit.</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 07</span><div class="rule"></div></div>
+    <h2 class="section-title">Installation</h2>
+    <p class="section-lede">Developer mode, unpacked — five minutes, no store review queue.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Get the source</h4>
+          <p>Download the latest <code>Source code (zip)</code> from the Releases page, or clone directly:</p>
+          <pre class="code-block">git clone https://github.com/tomsec8/OPSECHub.git</pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Build the initial rulesets</h4>
+          <p>Run the updater utility once to download and convert the latest blocklists into Chrome MV3 format:</p>
+          <pre class="code-block">python tools/updater.py</pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Open extensions</h4>
+          <p>In Chrome, navigate to <code>chrome://extensions</code> and enable <b style="color:var(--paper)">Developer mode</b> in the top right.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Load unpacked</h4>
+          <p>Click <b style="color:var(--paper)">Load unpacked</b> and select the <code>OPSECHub/</code> folder.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h4>Pin it</h4>
+          <p>Pin OPSECHub to the toolbar for one-click access to the control center.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:12px; color:var(--paper-dim); font-size:0.9rem;">To keep static rulesets synced with upstream blocklist releases later on, re-run <code style="color:var(--green)">python tools/updater.py</code> — it re-converts raw blocklists into MV3 rules and refreshes the metadata timestamps.</p>
+  </div>
+</section>
+
+<section id="credits" style="padding-bottom:64px;">
+  <div class="wrap">
+    <div class="eyebrow"><span class="file-tag">FILE 08</span><div class="rule"></div></div>
+    <h2 class="section-title" style="font-size:1.4rem;">Credits &amp; attributions</h2>
+    <p class="section-lede" style="margin-bottom:28px;">Built on the shoulders of a few excellent open feeds and libraries.</p>
+    <ul class="credit-list">
+      <li>AdBlocker &amp; shield rules — <a href="https://github.com/hagezi/dns-blocklists" target="_blank" rel="noopener">HaGeZi DNS Blocklists</a></li>
+      <li>Live threat feeds — <a href="https://phishtank.org/" target="_blank" rel="noopener">PhishTank</a>, <a href="https://openphish.com/" target="_blank" rel="noopener">OpenPhish</a>, <a href="https://urlhaus.abuse.ch/" target="_blank" rel="noopener">URLHaus</a></li>
+      <li>Proxy lists — <a href="https://free-proxy-list.net/" target="_blank" rel="noopener">Free-Proxy-List.net</a> &amp; ProxyScrape</li>
+      <li>Secure DNS benchmarks — Cloudflare, Quad9, AdGuard DNS, Control D, Mullvad, NextDNS, CleanBrowsing, Google Public DNS, DNS.SB</li>
+      <li>PDF parsing — <a href="https://github.com/Hopding/pdf-lib" target="_blank" rel="noopener">pdf-lib</a></li>
+      <li>Office document handling — <a href="https://github.com/Stuk/jszip" target="_blank" rel="noopener">JSZip</a></li>
+      <li>Image metadata — <a href="https://github.com/mattiasw/ExifReader" target="_blank" rel="noopener">ExifReader</a></li>
+      <li>MD5 checksums — <a href="https://github.com/satazor/js-spark-md5" target="_blank" rel="noopener">spark-md5</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="stamp">Developed with care by TomSec8, for the cybersecurity &amp; OSINT community.</div>
+    <div class="foot-links">
+      <a href="https://github.com/tomsec8/OPSECHub" target="_blank" rel="noopener">Repository</a>
+      <a href="https://github.com/tomsec8/OPSECHub/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/tomsec8/OPSECHub/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0 License</a>
+      <a href="https://github.com/tomsec8/OPSECHub/issues" target="_blank" rel="noopener">Report an issue</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
