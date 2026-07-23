@@ -112,14 +112,15 @@
             const scripts = doc.querySelectorAll('script');
             scripts.forEach(s => s.remove());
 
-            // Strip inline on* event handlers and dangerous javascript: URIs
+            // Strip inline on* event handlers and dangerous URIs (javascript:, data:, vbscript:)
             const allElements = doc.querySelectorAll('*');
             allElements.forEach(el => {
                 const attrs = Array.from(el.attributes || []);
                 attrs.forEach(attr => {
                     const name = attr.name.toLowerCase();
-                    const val = (attr.value || '').toLowerCase().trim();
-                    if (name.startsWith('on') || val.startsWith('javascript:')) {
+                    const rawVal = attr.value || '';
+                    const cleanVal = rawVal.replace(/[\x00-\x20\s]/g, '').toLowerCase();
+                    if (name.startsWith('on') || cleanVal.includes('javascript:') || cleanVal.includes('data:') || cleanVal.includes('vbscript:')) {
                         el.removeAttribute(attr.name);
                     }
                 });
