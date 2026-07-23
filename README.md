@@ -143,7 +143,7 @@ OPSECHub is built on a zero-telemetry, privacy-first architecture. Because OPSEC
 ### Developer Mode (Unpacked Extension)
 1. Download the latest `Source code (zip)` from the [Releases Page](https://github.com/tomsec8/OPSECHub/releases) and extract it, or clone this repository:
    ```bash
-   git clone [https://github.com/tomsec8/OPSECHub.git](https://github.com/tomsec8/OPSECHub.git)
+   git clone https://github.com/tomsec8/OPSECHub.git
    ```
 2. **Important:** Generate the initial AdBlocker rulesets by running the updater utility:
    ```bash
