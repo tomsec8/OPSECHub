@@ -1,0 +1,34 @@
+{
+  "rulesets": [
+    {
+      "name": "Core_Light",
+      "sources": [
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/light.txt"
+      ]
+    },
+    {
+      "name": "Core_Multi",
+      "sources": [
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/multi.txt"
+      ]
+    },
+    {
+      "name": "Core_Normal",
+      "sources": [
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt"
+      ]
+    },
+    {
+      "name": "Core_Pro_Plus",
+      "sources": [
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.plus.txt"
+      ]
+    },
+    {
+      "name": "Core_Aggressive",
+      "sources": [
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/ultimate.txt"
+      ]
+    }
+  ]
+}
