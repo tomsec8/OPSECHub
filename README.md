@@ -35,17 +35,18 @@
 <summary><b>Click to expand screenshots</b></summary>
 <br>
 
-| **Dashboard (Popup Interface)** | **Options & Modules Dashboard** | **Live Threat Intelligence** |
+| **Main Popup Interface** | **Control Center Overview** | **AdBlocker & Security** |
 |:---:|:---:|:---:|
-| <img src="screenshots/popup.png" width="250" alt="Popup Interface" /> | <img src="screenshots/options.png" width="250" alt="Options Dashboard" /> | <img src="screenshots/threat_intel.png" width="250" alt="Threat Intel" /> |
+| <img src="screenshots/popup.png" width="250" alt="Popup Interface" /> | <img src="screenshots/dash.png" width="250" alt="Control Center Overview" /> | <img src="screenshots/options.png" width="250" alt="Security Settings" /> |
 
-| **Security Headers Analyzer** | **DoH Leak & Resolver Checker** | **Document Tracking Scanner** |
+| **Privacy & Identity** | **Network & Proxy** | **Live Threat Intelligence** |
 |:---:|:---:|:---:|
-| <img src="screenshots/header_analyzer.png" width="250" alt="Header Analyzer" /> | <img src="screenshots/doh_checker.png" width="250" alt="DoH Checker" /> | <img src="screenshots/doc_tracker.png" width="250" alt="Document Tracker" /> |
+| <img src="screenshots/privacy.png" width="250" alt="Privacy Protections" /> | <img src="screenshots/network.png" width="250" alt="Network Routing" /> | <img src="screenshots/threat_intel.png" width="250" alt="Threat Intel" /> |
 
-| **Text & URL Tracking Sanitizer** | **Proxy Manager** | **Secure DNS Setup Guide** |
-|:---:|:---:|:---:|
-| <img src="screenshots/url_sanitizer.png" width="250" alt="URL Sanitizer" /> | <img src="screenshots/proxy_manager.png" width="250" alt="Proxy Manager" /> | <img src="screenshots/dns_guide.png" width="250" alt="DNS Guide" /> |
+| **Security Headers Analyzer** | **DoH Leak & Resolver Checker** |
+|:---:|:---:|
+| <img src="screenshots/header_analyzer.png" width="250" alt="Header Analyzer" /> | <img src="screenshots/doh_checker.png" width="250" alt="DoH Checker" /> |
+
 
 </details>
 
