@@ -1,51 +1,62 @@
-# OPSECHub – OPSEC & Privacy Shield 🛡️
-
-<p align="center">
+<div align="center">
   <img src="icons/icon128.png" alt="OPSECHub Logo" width="128" />
-</p>
+  
+  <h1>OPSECHub – OPSEC & Privacy Shield 🛡️</h1>
+  
+  <p><b>Advanced Browser-Based Privacy & Operational Security Suite v1.0.0</b></p>
+  
+  <p>
+    A comprehensive browser extension designed for researchers, OSINT analysts, cybersecurity professionals, and privacy-conscious users.<br>
+    Protects your digital footprint by blocking ads, trackers, phishing, telemetry, browser fingerprinting, and IP leaks in real-time.
+  </p>
 
-<p align="center">
-  <b>Advanced Browser-Based Privacy & Operational Security Suite v1.0.0</b>
-</p>
+  <p>
+    <a href="#-interface-preview">Interface Preview</a> •
+    <a href="#-security">Security</a> •
+    <a href="#-privacy--identity">Privacy</a> •
+    <a href="#-network-routing">Network</a> •
+    <a href="#-extra-tools">Extra Tools</a> •
+    <a href="#-installation">Installation</a>
+  </p>
 
-<p align="center">
-  A comprehensive browser extension designed for researchers, OSINT analysts, cybersecurity professionals, and privacy-conscious users.<br>
-  Protects your digital footprint by blocking ads, trackers, phishing, telemetry, browser fingerprinting, and IP leaks in real-time.
-</p>
-
-<p align="center">
-  <a href="#-interface-preview">Interface Preview</a> •
-  <a href="#-security">Security</a> •
-  <a href="#-privacy--identity">Privacy</a> •
-  <a href="#-network-routing">Network</a> •
-  <a href="#-extra-tools">Extra Tools</a> •
-  <a href="#-installation">Installation</a>
-</p>
+  <p>
+    <a href="https://github.com/tomsec8/OPSECHub/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-GPL_v3-blue.svg" alt="License: GPL v3">
+    </a>
+    <img src="https://img.shields.io/badge/Version-1.0.0-success.svg" alt="Version: 1.0.0">
+  </p>
+</div>
 
 ---
 
 ## 📸 Interface Preview
 
+<details>
+<summary><b>Click to expand screenshots</b></summary>
+<br>
+
 | **Dashboard (Popup Interface)** | **Options & Modules Dashboard** | **Live Threat Intelligence** |
 |:---:|:---:|:---:|
-| <img src="screenshots/popup.png" width="250" alt="Popup Interface Placeholder" /> | <img src="screenshots/options.png" width="250" alt="Options Dashboard Placeholder" /> | <img src="screenshots/threat_intel.png" width="250" alt="Threat Intel Placeholder" /> |
+| <img src="screenshots/popup.png" width="250" alt="Popup Interface" /> | <img src="screenshots/options.png" width="250" alt="Options Dashboard" /> | <img src="screenshots/threat_intel.png" width="250" alt="Threat Intel" /> |
 
 | **Security Headers Analyzer** | **DoH Leak & Resolver Checker** | **Document Tracking Scanner** |
 |:---:|:---:|:---:|
-| <img src="screenshots/header_analyzer.png" width="250" alt="Header Analyzer Placeholder" /> | <img src="screenshots/doh_checker.png" width="250" alt="DoH Checker Placeholder" /> | <img src="screenshots/doc_tracker.png" width="250" alt="Document Tracker Placeholder" /> |
+| <img src="screenshots/header_analyzer.png" width="250" alt="Header Analyzer" /> | <img src="screenshots/doh_checker.png" width="250" alt="DoH Checker" /> | <img src="screenshots/doc_tracker.png" width="250" alt="Document Tracker" /> |
 
 | **Text & URL Tracking Sanitizer** | **Proxy Manager** | **Secure DNS Setup Guide** |
 |:---:|:---:|:---:|
-| <img src="screenshots/url_sanitizer.png" width="250" alt="URL Sanitizer Placeholder" /> | <img src="screenshots/proxy_manager.png" width="250" alt="Proxy Manager Placeholder" /> | <img src="screenshots/dns_guide.png" width="250" alt="DNS Guide Placeholder" /> |
+| <img src="screenshots/url_sanitizer.png" width="250" alt="URL Sanitizer" /> | <img src="screenshots/proxy_manager.png" width="250" alt="Proxy Manager" /> | <img src="screenshots/dns_guide.png" width="250" alt="DNS Guide" /> |
+
+</details>
 
 ---
 
 ## 🛡️ Security
 
 * **DeclarativeNetRequest Core Shield & AdBlocker:**
-  * 5 Tiered Rulesets: **HaGeZi Light** (Basic), **Multi** (Enhanced), **Pro** (Recommended), **Pro Plus** (Strict), and **Ultimate** (Aggressive).
-  * Real-time compiled rule count and official release date metadata.
-  * Easy-to-manage Domain Allowlist directly from the dashboard.
+  * **5 Tiered Rulesets:** HaGeZi Light (Basic), Multi (Enhanced), Pro (Recommended), Pro Plus (Strict), and Ultimate (Aggressive).
+  * **Metadata Analytics:** Real-time compiled rule count and official release date metadata.
+  * **Domain Allowlist:** Easy-to-manage exceptions list directly from the dashboard.
 * **Live Threat Intelligence:** Dynamic blocklists fetched from global threat feeds (**PhishTank**, **OpenPhish**, **URLHaus**) stopping Fake Protection, URL Shorteners, Dynamic DNS abuse, and Badware Hosters.
 * **Cookie & Storage Guard:** Automatically cleans up third-party tracking cookies, LocalStorage, and IndexedDB data on tab closure.
 * **Force HTTPS:** Automatically intercepts and upgrades insecure HTTP connections to secure, encrypted HTTPS.
@@ -106,17 +117,13 @@
 ### Developer Mode (Unpacked Extension)
 1. Clone or download this repository:
    ```bash
-   git clone https://github.com/tomsec8/OPSECHub.git
+   git clone [https://github.com/tomsec8/OPSECHub.git](https://github.com/tomsec8/OPSECHub.git)
    ```
 2. Open Google Chrome and navigate to `chrome://extensions`.
 3. Enable **Developer mode** in the top right corner.
 4. Click **Load unpacked** and select the `OPSECHub/` folder.
 5. Pin **OPSECHub** to your toolbar for instant access!
 
-### 🔄 Ruleset Updater Utility
-OPSECHub includes an external Python utility to keep static DNR rulesets synchronized with upstream blocklist releases.
-```bash
-python tools/updater.py
 ```
 This utility converts raw blocklist rules into Manifest V3 rules and updates the metadata timestamps.
 
@@ -138,8 +145,10 @@ This utility converts raw blocklist rules into Manifest V3 rules and updates the
 ---
 
 ## 📄 License
-Distributed under the **MIT License**. See `LICENSE` for more information.
 
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
+
+<br>
 <p align="center">
   Developed with ❤️ by <b>TomSec8</b> for the Cybersecurity & OSINT Community.
 </p>
