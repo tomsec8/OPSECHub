@@ -1,0 +1,141 @@
+{
+  "manifest_version": 3,
+  "name": "OPSECHub",
+  "version": "1.0.0.0",
+  "description": "Advanced OPSEC & Privacy Shield \u2013 Protect your digital footprint during OSINT operations and everyday browsing.",
+  "author": "TomSec8",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "declarativeNetRequestFeedback",
+    "browsingData",
+    "cookies",
+    "proxy",
+    "privacy",
+    "webNavigation",
+    "alarms",
+    "clipboardWrite",
+    "contentSettings"
+  ],
+  "optional_permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      { "id": "Core_Light_1", "enabled": false, "path": "rules/Core/Light/Core_Light_1.json" },
+      { "id": "Core_Light_2", "enabled": false, "path": "rules/Core/Light/Core_Light_2.json" },
+      { "id": "Core_Light_3", "enabled": false, "path": "rules/Core/Light/Core_Light_3.json" },
+      { "id": "Core_Light_4", "enabled": false, "path": "rules/Core/Light/Core_Light_4.json" },
+      { "id": "Core_Light_5", "enabled": false, "path": "rules/Core/Light/Core_Light_5.json" },
+      { "id": "Core_Light_6", "enabled": false, "path": "rules/Core/Light/Core_Light_6.json" },
+      { "id": "Core_Light_7", "enabled": false, "path": "rules/Core/Light/Core_Light_7.json" },
+      { "id": "Core_Light_8", "enabled": false, "path": "rules/Core/Light/Core_Light_8.json" },
+      { "id": "Core_Light_9", "enabled": false, "path": "rules/Core/Light/Core_Light_9.json" },
+      { "id": "Core_Light_10", "enabled": false, "path": "rules/Core/Light/Core_Light_10.json" },
+      { "id": "Core_Multi_1", "enabled": false, "path": "rules/Core/Multi/Core_Multi_1.json" },
+      { "id": "Core_Multi_2", "enabled": false, "path": "rules/Core/Multi/Core_Multi_2.json" },
+      { "id": "Core_Multi_3", "enabled": false, "path": "rules/Core/Multi/Core_Multi_3.json" },
+      { "id": "Core_Multi_4", "enabled": false, "path": "rules/Core/Multi/Core_Multi_4.json" },
+      { "id": "Core_Multi_5", "enabled": false, "path": "rules/Core/Multi/Core_Multi_5.json" },
+      { "id": "Core_Multi_6", "enabled": false, "path": "rules/Core/Multi/Core_Multi_6.json" },
+      { "id": "Core_Multi_7", "enabled": false, "path": "rules/Core/Multi/Core_Multi_7.json" },
+      { "id": "Core_Multi_8", "enabled": false, "path": "rules/Core/Multi/Core_Multi_8.json" },
+      { "id": "Core_Multi_9", "enabled": false, "path": "rules/Core/Multi/Core_Multi_9.json" },
+      { "id": "Core_Multi_10", "enabled": false, "path": "rules/Core/Multi/Core_Multi_10.json" },
+      { "id": "Core_Normal_1", "enabled": false, "path": "rules/Core/Normal/Core_Normal_1.json" },
+      { "id": "Core_Normal_2", "enabled": false, "path": "rules/Core/Normal/Core_Normal_2.json" },
+      { "id": "Core_Normal_3", "enabled": false, "path": "rules/Core/Normal/Core_Normal_3.json" },
+      { "id": "Core_Normal_4", "enabled": false, "path": "rules/Core/Normal/Core_Normal_4.json" },
+      { "id": "Core_Normal_5", "enabled": false, "path": "rules/Core/Normal/Core_Normal_5.json" },
+      { "id": "Core_Normal_6", "enabled": false, "path": "rules/Core/Normal/Core_Normal_6.json" },
+      { "id": "Core_Normal_7", "enabled": false, "path": "rules/Core/Normal/Core_Normal_7.json" },
+      { "id": "Core_Normal_8", "enabled": false, "path": "rules/Core/Normal/Core_Normal_8.json" },
+      { "id": "Core_Normal_9", "enabled": false, "path": "rules/Core/Normal/Core_Normal_9.json" },
+      { "id": "Core_Normal_10", "enabled": false, "path": "rules/Core/Normal/Core_Normal_10.json" },
+      { "id": "Core_Pro_Plus_1", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_1.json" },
+      { "id": "Core_Pro_Plus_2", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_2.json" },
+      { "id": "Core_Pro_Plus_3", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_3.json" },
+      { "id": "Core_Pro_Plus_4", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_4.json" },
+      { "id": "Core_Pro_Plus_5", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_5.json" },
+      { "id": "Core_Pro_Plus_6", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_6.json" },
+      { "id": "Core_Pro_Plus_7", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_7.json" },
+      { "id": "Core_Pro_Plus_8", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_8.json" },
+      { "id": "Core_Pro_Plus_9", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_9.json" },
+      { "id": "Core_Pro_Plus_10", "enabled": false, "path": "rules/Core/Pro_Plus/Core_Pro_Plus_10.json" },
+      { "id": "Core_Aggressive_1", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_1.json" },
+      { "id": "Core_Aggressive_2", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_2.json" },
+      { "id": "Core_Aggressive_3", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_3.json" },
+      { "id": "Core_Aggressive_4", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_4.json" },
+      { "id": "Core_Aggressive_5", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_5.json" },
+      { "id": "Core_Aggressive_6", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_6.json" },
+      { "id": "Core_Aggressive_7", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_7.json" },
+      { "id": "Core_Aggressive_8", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_8.json" },
+      { "id": "Core_Aggressive_9", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_9.json" },
+      { "id": "Core_Aggressive_10", "enabled": false, "path": "rules/Core/Aggressive/Core_Aggressive_10.json" }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "modules/antiFingerprint/inject.js",
+        "modules/antiFingerprint/injectBlendIn.js",
+        "modules/userAgentSpoof/inject_win_chrome.js",
+        "modules/userAgentSpoof/inject_mac_safari.js",
+        "modules/userAgentSpoof/inject_linux_firefox.js",
+        "modules/userAgentSpoof/inject_ios_safari.js",
+        "modules/userAgentSpoof/inject_android_chrome.js",
+        "modules/privacyHeaders/inject.js",
+        "modules/clickjackXss/inject.js",
+        "modules/clipboardGuard/inject.js",
+        "modules/locationBlock/inject.js",
+        "modules/hardwareMask/inject.js",
+        "modules/mediaBlock/inject.js",
+        "modules/webrtc/inject.js",
+        "modules/referrerControl/inject.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

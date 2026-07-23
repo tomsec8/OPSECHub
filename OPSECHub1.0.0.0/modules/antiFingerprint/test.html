@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSECHub - Fingerprint Diagnostics Sandbox</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-card: #121824;
+            --text-primary: #ffffff;
+            --text-secondary: #b0bec5;
+            --primary-color: #00e5ff;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            margin-top: 40px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 22px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        p.desc {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        .canvas-box {
+            margin: 20px auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: inline-block;
+        }
+        canvas {
+            background: #fff;
+            border-radius: 4px;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-align: left;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13.5px;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .value {
+            font-family: monospace;
+            color: var(--primary-color);
+            word-break: break-all;
+        }
+        button {
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 15px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎭 OPSECHub Fingerprint Diagnostics Sandbox</h1>
+        <p class="desc">
+            This local diagnostics panel generates a unique Canvas rendering and calculates its mathematical signature.
+        </p>
+        <div class="canvas-box">
+            <canvas id="test-canvas" width="220" height="80"></canvas>
+        </div>
+        <div class="results">
+            <div class="result-item">
+                <span class="label">Canvas Fingerprint Hash:</span>
+                <span class="value" id="canvas-hash">Calculating...</span>
+            </div>
+            <div class="result-item">
+                <span class="label">WebGL Renderer Spoofed:</span>
+                <span class="value" id="webgl-renderer">Calculating...</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Hardware Memory Spoofed:</span>
+                <span class="value" id="hw-memory">Calculating...</span>
+            </div>
+        </div>
+        <button id="btn-refresh">Generate New Signature</button>
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>

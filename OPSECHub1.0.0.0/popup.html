@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSECHub</title>
+    <link rel="stylesheet" href="styles/popup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+    <header id="app-header">
+        <div class="header-left">
+            <img src="icons/icon48.png" alt="OPSECHub" class="header-logo" id="header-logo">
+            <div class="header-title-group">
+                <h1 class="header-title">OPSECHub</h1>
+                <span class="header-version">v1.0.0</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="alert-bell-wrapper" style="position: relative;">
+                <button id="btn-alert-log" class="header-btn" title="Recent Alerts" style="color: #ff9800;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    <span id="alert-dot" class="alert-dot" style="display:none;"></span>
+                </button>
+            </div>
+            <button id="btn-refresh-all" class="header-btn" title="Refresh Rules" style="color: #4CAF50;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                    <path d="M3 3v5h5" />
+                </svg>
+            </button>
+            <button id="btn-master-power" class="header-btn power-on" title="Turn OPSECHub ON/OFF">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                </svg>
+            </button>
+            <button id="btn-settings" class="header-btn" title="Extra Tools">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div id="alert-log-panel" class="alert-log-panel" style="display:none;">
+            <div class="alert-log-header">
+                <span>🔔 Recent Alerts</span>
+                <button id="btn-clear-alerts" class="alert-clear-btn" title="Clear All">✕</button>
+            </div>
+            <div id="alert-log-list" class="alert-log-list">
+                <div class="alert-empty">No alerts recorded yet.</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════ NAVIGATION ═══════════════════════════════════ -->
+    <nav id="main-nav">
+        <button class="nav-tab active" data-tab="dashboard">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+            Dashboard
+        </button>
+        <button class="nav-tab" data-tab="security">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Security
+        </button>
+        <button class="nav-tab" data-tab="privacy">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+            </svg>
+            Privacy
+        </button>
+        <button class="nav-tab" data-tab="network">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            Network
+        </button>
+    </nav>
+
+    <!-- ═══════════════════════════════════ MAIN CONTENT ═══════════════════════════════════ -->
+    <main id="main-content">
+
+        <!-- ──────────── TAB: DASHBOARD ──────────── -->
+        <section id="tab-dashboard" class="tab-panel active">
+            <!-- Permanent Core Shield -->
+            <div class="status-grid" style="grid-template-columns: 1fr; margin-bottom: 20px;">
+                <div class="status-card" id="status-shield">
+                    <div class="status-card-icon">🛡️</div>
+                    <div class="status-card-info" style="flex: 1;">
+                        <span class="status-card-label">Security & Privacy Shield</span>
+                        <span class="status-card-value status-off" id="val-shield"
+                            style="font-size: 0.9em;">Disabled</span>
+                        <div id="desc-shield" style="font-size: 0.7em; color: var(--text-muted); margin-top: 2px;">All
+                            core protection is off.</div>
+                    </div>
+                    <div class="status-card-action">
+                        <button id="btn-configure-shield" class="run-tests-btn" title="Open Settings"
+                            style="padding: 4px 8px; font-size: 11px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); cursor: pointer; color: var(--text-secondary); border-radius: 4px; transition: 0.2s;">⚙️
+                            Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Bar -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin: 15px 0 8px 0; padding: 0 4px;">
+                <h3
+                    style="font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">
+                    Quick Actions</h3>
+                <button id="btn-edit-dashboard" class="reset-stats-btn" title="Edit Quick Actions">
+                    ⚙️ Edit
+                </button>
+            </div>
+
+            <div class="quick-actions" id="quick-actions-grid"
+                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;">
+                <!-- Dynamically populated by popup.js -->
+            </div>
+
+            <!-- Dashboard Edit Mode (Hidden) -->
+            <div id="dashboard-edit-mode"
+                style="display: none; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                <h4 style="color: var(--text-primary); font-size: 12px; margin-top: 0; margin-bottom: 10px;">Select
+                    Quick Actions</h4>
+
+                <label
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer;">
+                    <span style="font-size: 12px; color: var(--text-secondary);">🧹 Clear Current Site Data</span>
+                    <input type="checkbox" class="qa-checkbox" value="qa-clear-site" style="accent-color: #2196F3;">
+                </label>
+                <label
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer;">
+                    <span style="font-size: 12px; color: var(--text-secondary);">🗑️ Clear Global Cache</span>
+                    <input type="checkbox" class="qa-checkbox" value="qa-clear-cache" style="accent-color: #2196F3;">
+                </label>
+                <label
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer;">
+                    <span style="font-size: 12px; color: var(--text-secondary);">🕒 Delete Last Hour History</span>
+                    <input type="checkbox" class="qa-checkbox" value="qa-clear-history" style="accent-color: #2196F3;">
+                </label>
+                <label
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; cursor: pointer;">
+                    <span style="font-size: 12px; color: var(--text-secondary);">🍪 Nuke All Cookies</span>
+                    <input type="checkbox" class="qa-checkbox" value="qa-clear-cookies" style="accent-color: #2196F3;">
+                </label>
+
+
+                <button id="btn-save-dashboard" class="run-tests-btn"
+                    style="width: 100%; margin-top: 10px; padding: 8px;">Save Dashboard</button>
+            </div>
+
+            <!-- Threat Stats -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin: 15px 0 8px 0; padding: 0 4px;">
+                <h3
+                    style="font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">
+                    Network Analytics</h3>
+                <button id="btn-reset-stats" class="reset-stats-btn" title="Reset Statistics">
+                    🔄 Reset
+                </button>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-item" style="flex: 1;">
+                    <span class="stat-number" id="stat-ads-blocked">0</span>
+                    <span class="stat-label">Ads & Trackers</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item" style="flex: 1;">
+                    <span class="stat-number" id="stat-threats-blocked">0</span>
+                    <span class="stat-label">Threats Blocked</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────── TAB: SECURITY ──────────── -->
+        <section id="tab-security" class="tab-panel">
+            <div class="section-header">
+                <h2 class="section-title">🛡️ Security</h2>
+                <p class="section-desc">Core protection against malware and tracking.</p>
+            </div>
+            <div class="shield-modules-list">
+
+                <!-- AdBlocker -->
+                <div class="module-card" data-module="adBlocker">
+                    <div class="module-header">
+                        <div class="module-icon">🛡️</div>
+                        <div class="module-info">
+                            <h3 class="module-name">AdBlocker & Shield</h3>
+                            <p class="module-desc">Core protection against malware, trackers, and ads. Blocklists by HaGeZi.</p>
+                        </div>
+                        <button class="settings-btn" id="btn-settings-adBlocker" title="AdBlocker Settings">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="module-toggle" data-module="adBlocker">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <!-- Inline Settings AdBlocker -->
+                    <div id="settings-panel-adBlocker" class="module-inline-settings">
+                        <label style="font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; display: block;">Ruleset Tier:</label>
+                        <select id="inline-opt-shield-mode" class="ios-select">
+                            <option value="disabled">Disabled</option>
+                            <option value="Core_Light">HaGeZi Light (Basic / Less Breakage)</option>
+                            <option value="Core_Multi">HaGeZi Multi (Enhanced)</option>
+                            <option value="Core_Normal">HaGeZi Pro (Normal / Recommended)</option>
+                            <option value="Core_Pro_Plus">HaGeZi Pro Plus (Strict)</option>
+                            <option value="Core_Aggressive">HaGeZi Ultimate (Aggressive / Breaks Sites)</option>
+                        </select>
+                        <div id="inline-shield-mode-info" style="font-size: 10.5px; color: #00e5ff; margin-top: 4px; font-weight: 500;"></div>
+                        <div id="link-manage-allowlist" style="margin-top: 10px; font-size: 11px; color: var(--text-muted); cursor: pointer;">
+                            Manage Excluded Sites &rarr;
+                        </div>
+
+                        <div style="font-size: 10px; color: #ff5252; margin-top: 10px; line-height: 1.35; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 8px;">
+                            ⚠️ Note: Please disable other active adblockers (e.g., uBlock, AdGuard) to prevent browser rule capacity limits and conflicts.
+                        </div>
+                    </div>
+                    <!-- Site Exclusion inside AdBlocker -->
+                    <div id="site-exclusion-banner" class="module-settings"
+                        style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); justify-content: space-between; align-items: center; display: none;">
+                        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;">
+                            <span style="font-size: 11px; color: var(--text-secondary);">Block ads on: </span>
+                            <strong id="current-site-domain"
+                                style="font-size: 12px; color: var(--text-primary);">...</strong>
+                        </div>
+                        <label class="toggle-switch" style="transform: scale(0.8);"
+                            title="Toggle AdBlocker on this site">
+                            <input type="checkbox" id="toggle-site-exclusion" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Live Threat Intel -->
+                <div class="module-card" data-module="threatIntel">
+                    <div class="module-header">
+                        <div class="module-icon">⚡</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Live Threat Intelligence</h3>
+                            <p class="module-desc">Dynamic real-time protection lists. Feeds by PhishTank, OpenPhish & URLHaus.</p>
+                        </div>
+                        <button class="settings-btn" id="btn-settings-threatIntel" title="Threat Intel Settings">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="module-toggle" data-module="threatIntel">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <!-- Inline Settings Threat Intel -->
+                    <div id="settings-panel-threatIntel" class="module-inline-settings">
+                        <div style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 600;">Active Threat Feeds (PhishTank, OpenPhish, URLHaus):</div>
+                        <div id="dynamic-threat-blocklists" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                    </div>
+                </div>
+
+                <!-- Cookie Guard -->
+                <div class="module-card" data-module="cookieGuard">
+                    <div class="module-header">
+                        <div class="module-icon">🍪</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Cookie & Storage Guard</h3>
+                            <p class="module-desc">Auto-delete cookies, localStorage & IndexedDB.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="cookieGuard">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Force HTTPS -->
+                <div class="module-card" data-module="forceHttps">
+                    <div class="module-header">
+                        <div class="module-icon">🔒</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Force HTTPS</h3>
+                            <p class="module-desc">Upgrade all connections to secure HTTPS.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="forceHttps">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Clickjacking & XSS -->
+                <div class="module-card" data-module="clickjackXss">
+                    <div class="module-header">
+                        <div class="module-icon">🚫</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Clickjack & XSS Guard</h3>
+                            <p class="module-desc">Protect against clickjacking overlays and XSS.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="clickjackXss">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────── TAB: PRIVACY ──────────── -->
+        <section id="tab-privacy" class="tab-panel">
+            <div class="section-header">
+                <h2 class="section-title">🕵️ Privacy & Identity</h2>
+                <p class="section-desc">Control your browser fingerprint and identity exposure.</p>
+            </div>
+            <div class="shield-modules-list">
+
+                <div class="module-card" data-module="antiFingerprint">
+                    <div class="module-header">
+                        <div class="module-icon">🎭</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Anti-Fingerprint Engine</h3>
+                            <p class="module-desc">Randomize Canvas, WebGL & AudioContext.</p>
+                        </div>
+                        <button class="settings-btn" id="btn-settings-antiFingerprint" title="Fingerprint Settings">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="module-toggle" data-module="antiFingerprint">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <!-- Inline Settings Anti-Fingerprint -->
+                    <div id="settings-panel-antiFingerprint" class="module-inline-settings">
+                        <label for="inline-opt-anti-fingerprint-mode" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; display: block;">Fingerprint Mode:</label>
+                        <select id="inline-opt-anti-fingerprint-mode" class="ios-select">
+                            <option value="blend-in">Blend-In (Max Trust)</option>
+                            <option value="noise">Noise (Max Anonymity)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="userAgentSpoof">
+                    <div class="module-header">
+                        <div class="module-icon">🕵️</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Identity Spoofing</h3>
+                            <p class="module-desc">Spoof your browser identity and OS information.</p>
+                        </div>
+                        <button class="settings-btn" id="btn-settings-userAgentSpoof" title="Identity Settings">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="module-toggle" data-module="userAgentSpoof">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div id="settings-panel-userAgentSpoof" class="module-inline-settings">
+                        <label for="uaProfileSelect" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; display: block;">Select Identity Profile:</label>
+                        <select id="uaProfileSelect" class="ios-select">
+                            <option value="win_chrome">Windows 10 / Chrome (Recommended)</option>
+                            <option value="mac_safari">macOS / Safari</option>
+                            <option value="linux_firefox">Linux / Firefox</option>
+                            <option value="ios_safari">iPhone / Safari</option>
+                            <option value="android_chrome">Android / Chrome</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="hardwareMask">
+                    <div class="module-header">
+                        <div class="module-icon">💻</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Hardware Masking</h3>
+                            <p class="module-desc">Spoof screen resolution and hardware concurrency.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="hardwareMask">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="mediaBlock">
+                    <div class="module-header">
+                        <div class="module-icon">📸</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Camera & Mic Guard</h3>
+                            <p class="module-desc">Hard-blocks any access attempts to media APIs.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="mediaBlock">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="locationBlock">
+                    <div class="module-header">
+                        <div class="module-icon">📍</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Location Guard</h3>
+                            <p class="module-desc">Blocks or spoofs HTML5 Geolocation API.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="locationBlock">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="clipboardGuard">
+                    <div class="module-header">
+                        <div class="module-icon">📋</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Clipboard Protection</h3>
+                            <p class="module-desc">Prevents websites from silently reading clipboard.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="clipboardGuard">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="urlSanitizer">
+                    <div class="module-header">
+                        <div class="module-icon">✂️</div>
+                        <div class="module-info">
+                            <h3 class="module-name">URL Sanitizer</h3>
+                            <p class="module-desc">Silently strips tracking parameters from URLs.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="urlSanitizer">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="referrerControl">
+                    <div class="module-header">
+                        <div class="module-icon">🔗</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Referrer Control</h3>
+                            <p class="module-desc">Prevents websites from seeing where you came from.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="referrerControl">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="privacyHeaders">
+                    <div class="module-header">
+                        <div class="module-icon">🛑</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Privacy Headers</h3>
+                            <p class="module-desc">Injects Do Not Track & GPC signals.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="privacyHeaders">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="searchReferrerBlock">
+                    <div class="module-header">
+                        <div class="module-icon">🔍</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Search Stealth</h3>
+                            <p class="module-desc">Hides search queries from websites.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="searchReferrerBlock">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="googleTelemetry">
+                    <div class="module-header">
+                        <div class="module-icon">🚫</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Google Telemetry</h3>
+                            <p class="module-desc">Strips X-Client-Data header sent by Chrome.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="googleTelemetry">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────── TAB: NETWORK ──────────── -->
+        <section id="tab-network" class="tab-panel">
+            <div class="section-header">
+                <h2 class="section-title">🌍 Network Routing</h2>
+                <p class="section-desc">Manage proxy connections and network leaks.</p>
+            </div>
+            <div class="shield-modules-list">
+
+                <div class="module-card" data-module="proxyManager">
+                    <div class="module-header">
+                        <div class="module-icon">🌍</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Proxy & Web VPN</h3>
+                            <p class="module-desc">Route traffic through SOCKS5/HTTP proxies.</p>
+                        </div>
+                        <button class="settings-btn" id="btn-settings-proxyManager" title="Proxy Settings">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="module-toggle" data-module="proxyManager">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div id="settings-panel-proxyManager" class="module-inline-settings">
+                        <label style="font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; display: block;">Proxy Profile:</label>
+                        <select id="proxyProfileSelect" class="ios-select">
+                            <option value="none">🌐 Auto-Routing (Random Free SOCKS5)</option>
+                            <optgroup label="Tools" id="proxy-popup-group-tools">
+                                <option value='{"type":"http","host":"127.0.0.1","port":"8080"}'>🛠️ Burp Suite (HTTP 127.0.0.1:8080)</option>
+                            </optgroup>
+                            <optgroup label="Custom Manual Proxies" id="proxy-popup-group-custom">
+                                <!-- Populated dynamically -->
+                            </optgroup>
+                        </select>
+                        <div id="proxy-notice" style="font-size: 11px; color: var(--text-muted); margin-top: 6px; display: none;">
+                            No custom proxies saved yet.
+                        </div>
+                        <div id="link-configure-proxies" style="margin-top: 10px; font-size: 11px; color: var(--text-muted); cursor: pointer;">
+                            Configure Proxies &rarr;
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="webrtcBlock">
+                    <div class="module-header">
+                        <div class="module-icon">📡</div>
+                        <div class="module-info">
+                            <h3 class="module-name">WebRTC Leak Guard</h3>
+                            <p class="module-desc">Prevent real IP leakage through WebRTC.</p>
+                        </div>
+                        <label class="toggle-switch" style="margin-left:auto;">
+                            <input type="checkbox" class="module-toggle" data-module="webrtcBlock">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="module-card" data-module="decoyTraffic">
+                    <div class="module-header">
+                        <div class="module-icon">🌪️</div>
+                        <div class="module-info">
+                            <h3 class="module-name">Decoy Traffic</h3>
+                            <p class="module-desc">Generates fake background requests.</p>
+                        </div>
+                        <button class="settings-btn" id="btn-settings-decoyTraffic" title="Decoy Traffic Settings">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="module-toggle" data-module="decoyTraffic">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div id="settings-panel-decoyTraffic" class="module-inline-settings">
+                        <label for="inline-opt-decoy-intensity" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; display: block;">Noise Intensity:</label>
+                        <select id="inline-opt-decoy-intensity" class="ios-select">
+                            <option value="low">Low (10 domains/min)</option>
+                            <option value="medium">Medium (45 domains/min)</option>
+                            <option value="high">High (100 domains/min)</option>
+                        </select>
+                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+                            Active Noise Generator: Pinging domains in the background.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="lib/browser-polyfill.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+{
+  "Core_Light": {
+    "id": "Core_Light",
+    "category": "Core",
+    "title": "Light",
+    "description": "HaGeZi Light - Blocks Ads, Tracking, Metrics and some Badware",
+    "count": 41688,
+    "lastUpdated": "2026-07-23",
+    "chunks": [
+      "Core_Light_1"
+    ]
+  },
+  "Core_Multi": {
+    "id": "Core_Multi",
+    "category": "Core",
+    "title": "Multi",
+    "description": "HaGeZi Multi - Multi-protection list against Ads, Tracking, Telemetry, and Badware",
+    "count": 161340,
+    "lastUpdated": "2026-07-23",
+    "chunks": [
+      "Core_Multi_1",
+      "Core_Multi_2",
+      "Core_Multi_3",
+      "Core_Multi_4"
+    ]
+  },
+  "Core_Normal": {
+    "id": "Core_Normal",
+    "category": "Core",
+    "title": "Normal",
+    "description": "HaGeZi Pro (Normal) - All-round protection against Ads, Tracking, Telemetry, Phishing, Malware",
+    "count": 233726,
+    "lastUpdated": "2026-07-23",
+    "chunks": [
+      "Core_Normal_1",
+      "Core_Normal_2",
+      "Core_Normal_3",
+      "Core_Normal_4",
+      "Core_Normal_5"
+    ]
+  },
+  "Core_Pro_Plus": {
+    "id": "Core_Pro_Plus",
+    "category": "Core",
+    "title": "Pro_Plus",
+    "description": "HaGeZi Pro Plus - Enhanced protection based on Pro with more aggressive rules",
+    "count": 251788,
+    "lastUpdated": "2026-07-23",
+    "chunks": [
+      "Core_Pro_Plus_1",
+      "Core_Pro_Plus_2",
+      "Core_Pro_Plus_3",
+      "Core_Pro_Plus_4",
+      "Core_Pro_Plus_5",
+      "Core_Pro_Plus_6"
+    ]
+  },
+  "Core_Aggressive": {
+    "id": "Core_Aggressive",
+    "category": "Core",
+    "title": "Aggressive",
+    "description": "HaGeZi Ultimate (Aggressive) - Strictly cleans the Internet and protects your privacy",
+    "count": 275272,
+    "lastUpdated": "2026-07-23",
+    "chunks": [
+      "Core_Aggressive_1",
+      "Core_Aggressive_2",
+      "Core_Aggressive_3",
+      "Core_Aggressive_4",
+      "Core_Aggressive_5",
+      "Core_Aggressive_6"
+    ]
+  }
+}

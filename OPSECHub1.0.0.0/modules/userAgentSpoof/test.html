@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSECHub - User-Agent Diagnostics Sandbox</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-card: #121824;
+            --text-primary: #ffffff;
+            --text-secondary: #b0bec5;
+            --primary-color: #2196f3;
+            --accent-color: #00e5ff;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            margin-top: 40px;
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 22px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        p.desc {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        .status-banner {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-banner.active {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            color: var(--success-color);
+        }
+        .status-banner.inactive {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            color: var(--danger-color);
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 5px;
+        }
+        .result-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13.5px;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            flex: 0 0 200px;
+        }
+        .value {
+            font-family: monospace;
+            color: var(--primary-color);
+            word-break: break-all;
+            text-align: right;
+            flex: 1;
+        }
+        .nested-value {
+            font-size: 12px;
+            color: #78909c;
+            margin-top: 4px;
+            padding-left: 15px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        button, a.btn-link {
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover, a.btn-link:hover {
+            opacity: 0.9;
+        }
+        a.btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        a.btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        /* Removed external link styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕵️ User-Agent Diagnostics Sandbox</h1>
+        <p class="desc">
+            This local diagnostics panel runs JavaScript queries in the current execution scope to evaluate how your identity headers, navigator client hints, and browser platform interfaces are presented to the web.
+        </p>
+
+        <div id="status-banner" class="status-banner inactive">
+            <span id="status-text">Identity Spoofing: Disabled / Unpatched</span>
+            <span id="active-profile-badge" style="font-size: 11px; padding: 3px 8px; background: rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-weight: bold;">Real Identity</span>
+        </div>
+
+        <div class="results">
+            <div class="section-title">Standard HTTP Headers & APIs</div>
+            
+            <div class="result-item">
+                <div class="result-row">
+                    <span class="label">navigator.userAgent</span>
+                    <span class="value" id="val-useragent">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-row">
+                    <span class="label">navigator.platform</span>
+                    <span class="value" id="val-platform">Loading...</span>
+                </div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-row">
+                    <span class="label">navigator.appVersion</span>
+                    <span class="value" id="val-appversion">Loading...</span>
+                </div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-row">
+                    <span class="label">navigator.maxTouchPoints</span>
+                    <span class="value" id="val-touchpoints">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="results" style="margin-top: 15px;">
+            <div class="section-title">Navigator Client Hints (Sec-CH-UA)</div>
+
+            <div class="result-item">
+                <div class="result-row">
+                    <span class="label">navigator.userAgentData</span>
+                    <span class="value" id="val-ch-present">Loading...</span>
+                </div>
+                <div class="nested-value" id="val-ch-details">Loading...</div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button id="btn-refresh">Re-Evaluate Identity</button>
+        </div>
+
+        <!-- Removed external link buttons -->
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>
