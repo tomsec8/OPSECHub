@@ -107,6 +107,31 @@
 
 ---
 
+## 🔑 Permissions & Transparency
+
+OPSECHub is built on a zero-telemetry, privacy-first architecture. Because OPSECHub functions as an all-in-one OPSEC shield, Chrome requires specific Manifest V3 permissions. Below is the complete breakdown of why every permission in `manifest.json` is required:
+
+| Permission | Type | Purpose / Justification |
+| :--- | :--- | :--- |
+| `declarativeNetRequest` | Required | Powers the high-performance AdBlocker shield for domain & tracker blocking. |
+| `declarativeNetRequestWithHostAccess` | Required | Enables ruleset application across external domains. |
+| `declarativeNetRequestFeedback` | Required | Provides compiled rules statistics and blocked count feedback. |
+| `webRequest` | Required | Intercepts background tracking pings, Google telemetry (`sendBeacon`), and audit pings. |
+| `proxy` | Required | Enables the built-in Proxy Manager to route browser traffic through HTTP/SOCKS5 proxies. |
+| `privacy` | Required | Enforces strict WebRTC routing policies to prevent IP leaks and manages Referrer control. |
+| `cookies` & `browsingData` | Required | Allows Cookie Guard to auto-clean tracking cookies & LocalStorage when tabs close. |
+| `scripting` & `activeTab` | Required | Injects Anti-Fingerprint noise scripts (Canvas/WebGL) and Security Header Analyzers. |
+| `tabs` & `webNavigation` | Required | Monitors navigation events to apply URL Sanitizer rules and check domain allowlists. |
+| `contentSettings` | Required | Manages site-level permissions for Camera, Microphone, and HTML5 Geolocation protection. |
+| `clipboardWrite` | Required | Allows one-click copying of generated passphrases, hashes, and sanitized URLs. |
+| `storage` & `alarms` | Required | Persists user module preferences locally and triggers background decoy traffic schedules. |
+| `downloads` | Optional | Used for exporting diagnostic reports, sanitized files, and metadata analysis. |
+| `<all_urls>` | Host Access | Required to enforce global threat intelligence blocking across all browsed domains. |
+
+> **🔒 Privacy Assurance:** OPSECHub does **NOT** collect, log, track, or exfiltrate any user data, search queries, or browsing history. All operations occur strictly on your local machine.
+
+---
+
 ## 📚 Guides & Help
 
 * **Secure DNS Setup Guide:** Interactive step-by-step setup guide for configuring encrypted DNS (DoH/DoT) across all major platforms: Chrome, Firefox, Edge, Windows, macOS, Android, and iOS.
