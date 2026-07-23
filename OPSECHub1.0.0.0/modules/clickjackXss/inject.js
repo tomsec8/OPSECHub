@@ -103,21 +103,32 @@
     // 2. DOM-BASED XSS PROTECTION (HTML SANITIZER)
     // ═══════════════════════════════════════════════════════════════════
     function sanitiseHTML(htmlString) {
-        if (typeof htmlString !== 'string') return htmlString;
-        
-        let cleaned = htmlString;
-        
-        // Remove script tags and their inner content
-        cleaned = cleaned.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-        
-        // Remove inline event handlers (on* event attributes)
-        cleaned = cleaned.replace(/on\w+\s*=\s*(?:'[^']*'|"[^"]*"|[^\s>]*)/gi, '');
-        
-        // Remove javascript: URIs in links and sources
-        cleaned = cleaned.replace(/href\s*=\s*(?:'javascript:[^']*'|"javascript:[^"]*"|javascript:[^\s>]*)/gi, 'href="#"');
-        cleaned = cleaned.replace(/src\s*=\s*(?:'javascript:[^']*'|"javascript:[^"]*"|javascript:[^\s>]*)/gi, 'src=""');
-        
-        return cleaned;
+        if (typeof htmlString !== 'string' || !htmlString) return htmlString;
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            
+            // Remove script elements safely
+            const scripts = doc.querySelectorAll('script');
+            scripts.forEach(s => s.remove());
+
+            // Strip inline on* event handlers and dangerous javascript: URIs
+            const allElements = doc.querySelectorAll('*');
+            allElements.forEach(el => {
+                const attrs = Array.from(el.attributes || []);
+                attrs.forEach(attr => {
+                    const name = attr.name.toLowerCase();
+                    const val = (attr.value || '').toLowerCase().trim();
+                    if (name.startsWith('on') || val.startsWith('javascript:')) {
+                        el.removeAttribute(attr.name);
+                    }
+                });
+            });
+
+            return doc.body.innerHTML;
+        } catch(e) {
+            return htmlString;
+        }
     }
 
     // Intercept Element.prototype.innerHTML setter

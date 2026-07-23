@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // Clear and inject iframe safely using strict DOM creation
-            wrapper.innerHTML = '';
+            wrapper.replaceChildren();
             const iframe = document.createElement('iframe');
             iframe.src = url;
             wrapper.appendChild(iframe);
