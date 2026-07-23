@@ -124,6 +124,13 @@
 4. Click **Load unpacked** and select the `OPSECHub/` folder.
 5. Pin **OPSECHub** to your toolbar for instant access!
 
+### 🔄 Ruleset Updater Utility
+OPSECHub includes an external Python utility to keep static DNR rulesets synchronized with upstream blocklist releases.
+```bash
+python tools/updater.py
+```
+This utility converts raw blocklist rules into Manifest V3 rules and updates the metadata timestamps.
+
 ---
 
 ## 🏆 Credits & Attributions
