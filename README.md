@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="icons/icon128.png" alt="OPSECHub Logo" width="128" />
+  <img src="OPSECHub1.0.0.0/icons/icon128.png" alt="OPSECHub Logo" width="128" />
   
   <h1>OPSECHub – OPSEC & Privacy Shield 🛡️</h1>
   
