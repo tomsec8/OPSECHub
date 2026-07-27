@@ -27,22 +27,16 @@
     "webRequest",
     "storage",
     "tabs",
-    "activeTab",
     "scripting",
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
-    "declarativeNetRequestFeedback",
     "browsingData",
-    "cookies",
     "proxy",
     "privacy",
     "webNavigation",
     "alarms",
     "clipboardWrite",
     "contentSettings"
-  ],
-  "optional_permissions": [
-    "downloads"
   ],
   "host_permissions": [
     "<all_urls>"
