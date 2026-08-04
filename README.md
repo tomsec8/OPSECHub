@@ -37,7 +37,6 @@
     </picture>
   </a>
 </p>
----
 
 ## 📸 Interface Preview
 
