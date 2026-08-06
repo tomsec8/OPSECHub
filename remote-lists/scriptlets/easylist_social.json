@@ -1,0 +1,10 @@
+{
+  "id": "easylist_social",
+  "hasScriptlets": true,
+  "hosts": {
+    "ISOLATED": [
+      "*"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

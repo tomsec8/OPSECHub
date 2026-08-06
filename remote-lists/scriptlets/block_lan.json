@@ -1,0 +1,6 @@
+{
+  "id": "block_lan",
+  "hasScriptlets": false,
+  "hosts": null,
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

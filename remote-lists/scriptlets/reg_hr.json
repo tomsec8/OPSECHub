@@ -1,0 +1,10 @@
+{
+  "id": "reg_hr",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "olx.ba"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

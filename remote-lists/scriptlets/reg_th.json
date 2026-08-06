@@ -1,0 +1,18 @@
+{
+  "id": "reg_th",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "fembeq.com",
+      "movie2uhd.com",
+      "movie87hd.com",
+      "subthai.tv",
+      "thmovieshd.com",
+      "www.nung2d.com"
+    ],
+    "ISOLATED": [
+      "nungkai.com"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

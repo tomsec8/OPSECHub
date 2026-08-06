@@ -1,0 +1,22 @@
+{
+  "id": "reg_cn",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "*"
+    ],
+    "ISOLATED": [
+      "9xav.cc",
+      "aiyifan.tv",
+      "iyf.tv",
+      "jmcomic1.me",
+      "nb.zol.com.cn",
+      "noslocker.com",
+      "phone-book.tw",
+      "subhd.com",
+      "xl02.com.de",
+      "yfsp.tv"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

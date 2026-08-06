@@ -1,0 +1,19 @@
+{
+  "id": "reg_fr",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "*"
+    ],
+    "ISOLATED": [
+      "hentaivost.fr",
+      "jeune-gay.fr",
+      "lexpress.fr",
+      "mapcustomizer.com",
+      "monpetitforfait.com",
+      "nakastream.tv",
+      "pianoweb.fr"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "reg_lt",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "15min.lt",
+      "37.16.75.37",
+      "delfi.lt",
+      "player.eltitbus.xyz",
+      "player.filmux.to",
+      "simpsonaionline.net",
+      "torrent.ai",
+      "torrent.lt"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "reg_kr",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "*"
+    ],
+    "ISOLATED": [
+      "dcinside.com",
+      "excellesports.com",
+      "gall.dcinside.com",
+      "m.dcinside.com",
+      "m.humoruniv.com",
+      "maple.gg",
+      "mlbpark.donga.com",
+      "oh-yes.co.kr",
+      "ssodam.com",
+      "www.naver.com"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

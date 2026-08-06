@@ -1,0 +1,28 @@
+{
+  "id": "reg_id",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "*"
+    ],
+    "ISOLATED": [
+      "3gpterbaru.com",
+      "almaftuchin.com",
+      "carisinyal.com",
+      "duniaseksi.com",
+      "gramedia.com",
+      "indokontraktor.com",
+      "inews.id",
+      "katadata.co.id",
+      "kisahterlarang.site",
+      "layarwibu.com",
+      "okezone.com",
+      "sindonews.com",
+      "sukasex.net",
+      "sukasex.tv",
+      "tipskerja.com",
+      "wisatalova.com"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}

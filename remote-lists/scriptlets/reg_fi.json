@@ -1,0 +1,27 @@
+{
+  "id": "reg_fi",
+  "hasScriptlets": true,
+  "hosts": {
+    "MAIN": [
+      "afterdawn.com",
+      "dawn.fi",
+      "download.fi",
+      "findit.fi",
+      "happypancake.fi",
+      "high.fi",
+      "mtv.fi",
+      "mtvuutiset.fi",
+      "muropaketti.com",
+      "s-kaupat.fi",
+      "telsu.fi"
+    ],
+    "ISOLATED": [
+      "aalto.fi",
+      "ap-cdn.sanomagames.com",
+      "finder.fi",
+      "srk.fi",
+      "vauva.fi"
+    ]
+  },
+  "note": "Scriptlet *engine* ships in the extension. Remote updates may later carry rule args only."
+}
