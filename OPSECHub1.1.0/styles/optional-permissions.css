@@ -1,0 +1,92 @@
+/* Optional-permission explain dialog + toast (popup & options) */
+.opsec-perm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+}
+.opsec-perm-dialog {
+    width: min(340px, 100%);
+    background: #1a2332;
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 12px;
+    padding: 18px 16px 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    color: #e8eef4;
+}
+.opsec-perm-dialog h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #00e5ff;
+}
+.opsec-perm-reason {
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #cfd8dc;
+}
+.opsec-perm-note {
+    margin: 0 0 14px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #90a4ae;
+}
+.opsec-perm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.opsec-perm-btn {
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.opsec-perm-btn.secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #b0bec5;
+}
+.opsec-perm-btn.primary {
+    background: rgba(0, 229, 255, 0.15);
+    border-color: rgba(0, 229, 255, 0.4);
+    color: #00e5ff;
+}
+.opsec-perm-btn:hover {
+    filter: brightness(1.08);
+}
+.opsec-perm-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%) translateY(12px);
+    z-index: 10001;
+    max-width: min(320px, calc(100% - 24px));
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(26, 35, 50, 0.96);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: #e0f7fa;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.opsec-perm-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+.opsec-perm-toast.is-error {
+    border-color: rgba(255, 82, 82, 0.45);
+    color: #ffcdd2;
+}

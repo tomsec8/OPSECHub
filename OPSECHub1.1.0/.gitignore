@@ -1,0 +1,13 @@
+# If this folder is published as its own repo
+node_modules/
+.env
+.env.*
+!.env.example
+*.pem
+*.crx
+*.zip
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

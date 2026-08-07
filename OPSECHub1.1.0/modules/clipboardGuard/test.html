@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSECHub - Clipboard Guard Diagnostics</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-card: #121824;
+            --text-primary: #ffffff;
+            --text-secondary: #b0bec5;
+            --primary-color: #00e5ff;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            margin-top: 40px;
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 22px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        p.desc {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        .status-banner {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-banner.active {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--primary-color);
+        }
+        .status-banner.inactive {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            color: var(--danger-color);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 5px;
+        }
+        .log-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 100px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+            box-sizing: border-box;
+        }
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+        button {
+            flex: 1;
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        button.btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        button.btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        input[type="text"] {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #fff;
+            font-size: 12.5px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Clipboard Guard Sandbox</h1>
+        <p class="desc">
+            This local diagnostics panel runs JavaScript queries to evaluate copy/paste permissions and clipboard read access blocks.
+        </p>
+
+        <div id="status-banner" class="status-banner inactive">
+            <span id="status-text">Clipboard Guard: Disabled / Unpatched</span>
+            <span style="font-size: 11px; padding: 3px 8px; background: rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-weight: bold;">Standard Realm</span>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+            <div class="section-title">Step 1: Copy Test Data to system clipboard</div>
+            <input type="text" id="copy-input" value="OPSECHub-Diagnostic-Secret-12345" placeholder="Type test string...">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button id="btn-copy" style="max-width: 200px;">Copy To Clipboard</button>
+                <span id="copy-status" style="font-size: 13px; font-weight: bold; color: var(--success-color);"></span>
+            </div>
+        </div>
+
+        <div class="results-grid">
+            <div class="card">
+                <div class="section-title">Step 2a: Try Reading Clipboard API</div>
+                <div class="log-box" id="read-output">Click "Read Clipboard" to query navigator.clipboard.</div>
+                <div class="btn-container">
+                    <button id="btn-read">Read Clipboard</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">Step 2b: Try Paste Command (execCommand)</div>
+                <div class="log-box" id="paste-output">Click "Trigger execCommand('paste')" to run test.</div>
+                <div class="btn-container">
+                    <button id="btn-paste">Trigger execCommand('paste')</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container" style="justify-content: center; margin-top: 25px;">
+            <button id="btn-refresh" class="btn-outline" style="max-width: 250px;">Re-Evaluate Page Status</button>
+        </div>
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSECHub — First-time setup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070b14;
+            --card: rgba(16, 22, 36, 0.92);
+            --line: rgba(0, 229, 255, 0.22);
+            --cyan: #00e5ff;
+            --text: #eef5ff;
+            --muted: #9aadc0;
+            --ok: #30d158;
+            --warn: #ffb74d;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 16px;
+            color: var(--text);
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(0, 229, 255, 0.1), transparent 42%),
+                radial-gradient(circle at 88% 78%, rgba(33, 150, 243, 0.1), transparent 40%),
+                var(--bg);
+        }
+        .shell {
+            width: min(720px, 100%);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 36px 32px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+        .brand img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+        }
+        .brand h1 {
+            font-family: Outfit, sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+        }
+        .brand p { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+        [data-step][hidden] { display: none !important; }
+
+        .panel-title {
+            font-family: Outfit, sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .panel-sub {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+            margin-bottom: 22px;
+        }
+
+        .spinner-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 28px 8px 12px;
+            gap: 14px;
+        }
+        .spinner {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 3px solid rgba(0, 229, 255, 0.2);
+            border-top-color: var(--cyan);
+            animation: spin 0.75s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading-status, #apply-status {
+            font-family: Outfit, sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        #loading-detail, #apply-detail {
+            color: var(--muted);
+            font-size: 13px;
+            max-width: 420px;
+            line-height: 1.5;
+        }
+
+        .presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .preset-btn {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .preset-btn:hover { color: var(--cyan); border-color: rgba(0,229,255,0.35); }
+
+        .list-picker {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 340px;
+            overflow: auto;
+            margin-bottom: 16px;
+            padding-right: 4px;
+        }
+        .list-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 12px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(0,0,0,0.18);
+            cursor: pointer;
+        }
+        .list-row:hover { border-color: rgba(0,229,255,0.28); }
+        .list-text { display: flex; flex-direction: column; gap: 2px; }
+        .list-text strong { font-size: 13.5px; }
+        .list-blurb { font-size: 12px; color: var(--muted); }
+        .list-badge {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--cyan);
+            background: rgba(0,229,255,0.1);
+            border: 1px solid rgba(0,229,255,0.25);
+            border-radius: 999px;
+            padding: 3px 8px;
+        }
+        .sel-line {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+        .sel-line strong { color: var(--cyan); }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .btn-primary {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: Outfit, sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            color: #041018;
+            background: linear-gradient(135deg, #00e5ff, #2196f3);
+            box-shadow: 0 4px 18px rgba(0,229,255,0.3);
+        }
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.14);
+            background: transparent;
+            color: var(--muted);
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-secondary:hover { color: var(--text); }
+
+        .progress {
+            width: min(360px, 100%);
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            overflow: hidden;
+            margin: 8px 0 4px;
+        }
+        .progress > i {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00e5ff, #2196f3);
+            transition: width 0.25s ease;
+        }
+
+        .done-box { text-align: center; padding: 12px 0 4px; }
+        .done-box .check {
+            width: 52px; height: 52px; margin: 0 auto 14px;
+            border-radius: 50%;
+            display: grid; place-items: center;
+            background: rgba(48,209,88,0.12);
+            border: 1px solid rgba(48,209,88,0.35);
+            color: var(--ok);
+            font-size: 24px;
+        }
+        .note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+        .warn { color: var(--warn); }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <div class="brand">
+            <img src="icons/icon128.png" alt="OPSECHub">
+            <div>
+                <h1>OPSECHub</h1>
+                <p>First-time setup — you choose what to block</p>
+            </div>
+        </div>
+
+        <!-- Step: loading / bootstrap -->
+        <section data-step="loading">
+            <div class="spinner-wrap">
+                <div class="spinner" aria-hidden="true"></div>
+                <div id="loading-status">Loading OPSECHub…</div>
+                <div id="loading-detail">Setting things up so the extension is ready. This should only take a few seconds.</div>
+            </div>
+            <p class="note">Nothing is stuck — we’re preparing the catalog before you pick filter lists.</p>
+        </section>
+
+        <!-- Step: choose lists -->
+        <section data-step="choose" hidden>
+            <h2 class="panel-title">Choose your filter lists</h2>
+            <p class="panel-sub">
+                Nothing is downloaded until you confirm. The <strong>Recommended</strong> pack matches solid everyday protection
+                (ads, trackers, and basic malware) without the heaviest lists.
+            </p>
+
+            <div class="presets">
+                <button type="button" class="preset-btn" id="btn-preset-recommended">Recommended</button>
+                <button type="button" class="preset-btn" id="btn-preset-minimal">Minimal</button>
+                <button type="button" class="preset-btn" id="btn-preset-none">None</button>
+            </div>
+
+            <div id="list-picker" class="list-picker"></div>
+            <div class="sel-line"><strong id="sel-count">0</strong> lists selected</div>
+
+            <div class="actions">
+                <button type="button" class="btn-secondary" id="btn-skip">Skip for now</button>
+                <button type="button" class="btn-primary" id="btn-apply">Enable selected lists</button>
+            </div>
+            <p class="note warn">Skip means AdBlocker stays on but blocks almost nothing until you add lists in Settings.</p>
+        </section>
+
+        <!-- Step: applying -->
+        <section data-step="applying" hidden>
+            <div class="spinner-wrap">
+                <div class="spinner" aria-hidden="true"></div>
+                <div id="apply-status">Applying lists…</div>
+                <div class="progress"><i id="apply-bar"></i></div>
+                <div id="apply-detail">Downloading and installing rules. Large lists can take a bit.</div>
+            </div>
+        </section>
+
+        <!-- Step: done -->
+        <section data-step="done" hidden>
+            <div class="done-box">
+                <div class="check">✓</div>
+                <h2 class="panel-title">You’re ready</h2>
+                <p class="panel-sub" style="margin-bottom:18px;">
+                    You can change lists anytime under Settings → AdBlocker.
+                </p>
+                <button type="button" class="btn-primary" id="btn-open-options">Open Settings</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="welcome.js"></script>
+</body>
+</html>

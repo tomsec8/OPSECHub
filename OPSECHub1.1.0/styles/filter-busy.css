@@ -1,0 +1,56 @@
+/* Shared centered loading modal (options + popup) */
+.filter-busy-opt {
+    display: none;
+}
+.filter-busy-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(4, 9, 20, 0.62);
+    backdrop-filter: blur(3px);
+}
+.filter-busy-card {
+    width: min(380px, 100%);
+    background: rgba(18, 26, 40, 0.98);
+    border: 1px solid rgba(0, 229, 255, 0.28);
+    border-radius: 14px;
+    padding: 28px 22px 22px;
+    text-align: center;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+.filter-busy-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    justify-content: center;
+}
+.filter-busy-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #00e5ff;
+    line-height: 1.45;
+}
+.filter-busy-sub {
+    font-size: 12px;
+    font-weight: 500;
+    color: #90a4ae;
+    line-height: 1.45;
+    max-width: 300px;
+}
+.filter-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(0, 229, 255, 0.2);
+    border-top-color: #00e5ff;
+    border-radius: 50%;
+    animation: filter-spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+@keyframes filter-spin {
+    to { transform: rotate(360deg); }
+}

@@ -1,0 +1,1677 @@
+{
+  "schemaVersion": 1,
+  "builtAt": "2026-08-06T19:33:13.335Z",
+  "cdnBaseUrl": "https://cdn.jsdelivr.net/gh/tomsec8/OPSECHub-Lists@main/remote-lists",
+  "categories": {
+    "default": {
+      "label": "Default",
+      "source": "updater"
+    },
+    "ads": {
+      "label": "Ads",
+      "source": "updater"
+    },
+    "privacy": {
+      "label": "Privacy",
+      "source": "updater"
+    },
+    "malware": {
+      "label": "Malware protection, security",
+      "source": "updater"
+    },
+    "hagezi": {
+      "label": "HaGeZi Multi (pick one)",
+      "source": "updater"
+    },
+    "backup": {
+      "label": "Backup",
+      "source": "updater"
+    },
+    "annoyances": {
+      "label": "Annoyances",
+      "source": "updater"
+    },
+    "regions": {
+      "label": "Regions, languages",
+      "source": "updater"
+    },
+    "live": {
+      "label": "⚡ Live Threat Intelligence",
+      "source": "overlay"
+    }
+  },
+  "lists": [
+    {
+      "id": "easylist",
+      "name": "EasyList",
+      "category": "default",
+      "type": "full",
+      "remotePath": "lists/easylist.dnr.json",
+      "cosmetics": "cosmetics/easylist.json",
+      "regex": "lists/easylist.regex.json",
+      "scriptlets": "scriptlets/easylist.json",
+      "stats": {
+        "original": 86636,
+        "compressed": 3707,
+        "regex": 20,
+        "css": {
+          "generic": 12333,
+          "specific": 8193
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://easylist.to/"
+    },
+    {
+      "id": "easyprivacy",
+      "name": "EasyPrivacy",
+      "category": "default",
+      "type": "full",
+      "remotePath": "lists/easyprivacy.dnr.json",
+      "cosmetics": "cosmetics/easyprivacy.json",
+      "regex": "lists/easyprivacy.regex.json",
+      "scriptlets": "scriptlets/easyprivacy.json",
+      "stats": {
+        "original": 56092,
+        "compressed": 8916,
+        "regex": 7,
+        "css": {
+          "generic": 2,
+          "specific": 4
+        },
+        "scriptlets": 138
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://easylist.to/"
+    },
+    {
+      "id": "peter_lowe",
+      "name": "Peter Lowe – Ads, trackers, and more",
+      "category": "default",
+      "type": "full",
+      "remotePath": "lists/peter_lowe.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/peter_lowe.json",
+      "stats": {
+        "original": 3533,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://pgl.yoyo.org/adservers/"
+    },
+    {
+      "id": "ublock_filters",
+      "name": "uBlock filters – Ads, trackers, and more",
+      "category": "default",
+      "type": "full",
+      "remotePath": "lists/ublock_filters.dnr.json",
+      "cosmetics": "cosmetics/ublock_filters.json",
+      "regex": "lists/ublock_filters.regex.json",
+      "scriptlets": "scriptlets/ublock_filters.json",
+      "stats": {
+        "original": 30147,
+        "compressed": 5418,
+        "regex": 198,
+        "css": {
+          "generic": 660,
+          "specific": 5254
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+      "id": "adguard_mobile",
+      "name": "AdGuard/uBO – Mobile Ads",
+      "category": "ads",
+      "type": "full",
+      "remotePath": "lists/adguard_mobile.dnr.json",
+      "cosmetics": "cosmetics/adguard_mobile.json",
+      "regex": "lists/adguard_mobile.regex.json",
+      "scriptlets": "scriptlets/adguard_mobile.json",
+      "stats": {
+        "original": 9182,
+        "compressed": 556,
+        "regex": 9,
+        "css": {
+          "generic": 71,
+          "specific": 4543
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "adguard_ubo",
+      "name": "AdGuard/uBO – URL Tracking Protection",
+      "category": "privacy",
+      "type": "full",
+      "remotePath": "lists/adguard_ubo.dnr.json",
+      "cosmetics": "cosmetics/adguard_ubo.json",
+      "regex": null,
+      "scriptlets": "scriptlets/adguard_ubo.json",
+      "stats": {
+        "original": 3799,
+        "compressed": 2041,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 3
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+      "id": "block_lan",
+      "name": "Block Outsider Intrusion into LAN",
+      "category": "privacy",
+      "type": "full",
+      "remotePath": "lists/block_lan.dnr.json",
+      "cosmetics": null,
+      "regex": "lists/block_lan.regex.json",
+      "scriptlets": "scriptlets/block_lan.json",
+      "stats": {
+        "original": 184,
+        "compressed": 12,
+        "regex": 8,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+      "id": "ublock_badware",
+      "name": "uBlock filters – Badware risks",
+      "category": "malware",
+      "type": "full",
+      "remotePath": "lists/ublock_badware.dnr.json",
+      "cosmetics": "cosmetics/ublock_badware.json",
+      "regex": "lists/ublock_badware.regex.json",
+      "scriptlets": "scriptlets/ublock_badware.json",
+      "stats": {
+        "original": 4584,
+        "compressed": 1141,
+        "regex": 135,
+        "css": {
+          "generic": 35,
+          "specific": 208
+        },
+        "scriptlets": 29
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+      "id": "malicious_url",
+      "name": "Malicious URL Blocklist",
+      "category": "malware",
+      "type": "full",
+      "remotePath": "lists/malicious_url.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/malicious_url.json",
+      "stats": {
+        "original": 7075,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://gitlab.com/malware-filter/urlhaus-filter"
+    },
+    {
+      "id": "phishing_url",
+      "name": "Phishing URL Blocklist",
+      "category": "malware",
+      "type": "full",
+      "remotePath": "lists/phishing_url.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/phishing_url.json",
+      "stats": {
+        "original": 62352,
+        "compressed": 27096,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://gitlab.com/malware-filter/phishing-filter"
+    },
+    {
+      "id": "scam_blocklist",
+      "name": "Scam Blocklist by DurableNapkin",
+      "category": "malware",
+      "type": "full",
+      "remotePath": "lists/scam_blocklist.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/scam_blocklist.json",
+      "stats": {
+        "original": 972,
+        "compressed": 11,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/durablenapkin/scamblocklist"
+    },
+    {
+      "id": "dandelion_antimalware",
+      "name": "Dandelion Sprout's Anti-Malware List",
+      "category": "malware",
+      "type": "full",
+      "remotePath": "lists/dandelion_antimalware.dnr.json",
+      "cosmetics": "cosmetics/dandelion_antimalware.json",
+      "regex": "lists/dandelion_antimalware.regex.json",
+      "scriptlets": "scriptlets/dandelion_antimalware.json",
+      "stats": {
+        "original": 14311,
+        "compressed": 548,
+        "regex": 35,
+        "css": {
+          "generic": 2,
+          "specific": 84
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/DandelionSprout/adfilt"
+    },
+    {
+      "id": "hagezi_light",
+      "name": "HaGeZi Multi – Light",
+      "category": "hagezi",
+      "type": "full",
+      "remotePath": "lists/hagezi_light.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/hagezi_light.json",
+      "stats": {
+        "original": 41463,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": "hagezi",
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/hagezi/dns-blocklists#light"
+    },
+    {
+      "id": "hagezi_multi",
+      "name": "HaGeZi Multi – Normal",
+      "category": "hagezi",
+      "type": "full",
+      "remotePath": "lists/hagezi_multi.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/hagezi_multi.json",
+      "stats": {
+        "original": 182896,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": "hagezi",
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/hagezi/dns-blocklists#normal"
+    },
+    {
+      "id": "hagezi_proplus",
+      "name": "HaGeZi Multi – Pro++",
+      "category": "hagezi",
+      "type": "full",
+      "remotePath": "lists/hagezi_proplus.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/hagezi_proplus.json",
+      "stats": {
+        "original": 241804,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": "hagezi",
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/hagezi/dns-blocklists#proplus"
+    },
+    {
+      "id": "hagezi_ultimate",
+      "name": "HaGeZi Multi – Ultimate",
+      "category": "hagezi",
+      "type": "full",
+      "remotePath": "lists/hagezi_ultimate.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/hagezi_ultimate.json",
+      "stats": {
+        "original": 272713,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": "hagezi",
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/hagezi/dns-blocklists#ultimate"
+    },
+    {
+      "id": "hagezi_pro",
+      "name": "HaGeZi Multi – Pro",
+      "category": "backup",
+      "type": "full",
+      "remotePath": "lists/hagezi_pro.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/hagezi_pro.json",
+      "stats": {
+        "original": 218363,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": "hagezi",
+      "enabledByDefault": false,
+      "bundledStatic": true,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/hagezi/dns-blocklists#pro"
+    },
+    {
+      "id": "easylist_ai",
+      "name": "EasyList – AI Widgets",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_ai.dnr.json",
+      "cosmetics": "cosmetics/easylist_ai.json",
+      "regex": null,
+      "scriptlets": "scriptlets/easylist_ai.json",
+      "stats": {
+        "original": 262,
+        "compressed": 6,
+        "regex": 0,
+        "css": {
+          "generic": 4,
+          "specific": 143
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "easylist_cookie",
+      "name": "EasyList/uBO – Cookie Notices",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_cookie.dnr.json",
+      "cosmetics": "cosmetics/easylist_cookie.json",
+      "regex": "lists/easylist_cookie.regex.json",
+      "scriptlets": "scriptlets/easylist_cookie.json",
+      "stats": {
+        "original": 34413,
+        "compressed": 1816,
+        "regex": 1,
+        "css": {
+          "generic": 13388,
+          "specific": 19783
+        },
+        "scriptlets": 611
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "easylist_notifications",
+      "name": "EasyList – Notifications",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_notifications.dnr.json",
+      "cosmetics": "cosmetics/easylist_notifications.json",
+      "regex": null,
+      "scriptlets": "scriptlets/easylist_notifications.json",
+      "stats": {
+        "original": 1823,
+        "compressed": 289,
+        "regex": 0,
+        "css": {
+          "generic": 296,
+          "specific": 1252
+        },
+        "scriptlets": 54
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "easylist_annoyances",
+      "name": "EasyList – Other Annoyances",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_annoyances.dnr.json",
+      "cosmetics": "cosmetics/easylist_annoyances.json",
+      "regex": null,
+      "scriptlets": "scriptlets/easylist_annoyances.json",
+      "stats": {
+        "original": 4286,
+        "compressed": 432,
+        "regex": 0,
+        "css": {
+          "generic": 785,
+          "specific": 2618
+        },
+        "scriptlets": 224
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "easylist_overlay",
+      "name": "EasyList/uBO – Overlay Notices",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_overlay.dnr.json",
+      "cosmetics": "cosmetics/easylist_overlay.json",
+      "regex": "lists/easylist_overlay.regex.json",
+      "scriptlets": "scriptlets/easylist_overlay.json",
+      "stats": {
+        "original": 14478,
+        "compressed": 327,
+        "regex": 2,
+        "css": {
+          "generic": 1186,
+          "specific": 6167
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "easylist_social",
+      "name": "EasyList – Social Widgets",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_social.dnr.json",
+      "cosmetics": "cosmetics/easylist_social.json",
+      "regex": null,
+      "scriptlets": "scriptlets/easylist_social.json",
+      "stats": {
+        "original": 13941,
+        "compressed": 594,
+        "regex": 0,
+        "css": {
+          "generic": 8842,
+          "specific": 4996
+        },
+        "scriptlets": 1
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "easylist_chat",
+      "name": "EasyList – Chat Widgets",
+      "category": "annoyances",
+      "type": "full",
+      "remotePath": "lists/easylist_chat.dnr.json",
+      "cosmetics": "cosmetics/easylist_chat.json",
+      "regex": null,
+      "scriptlets": "scriptlets/easylist_chat.json",
+      "stats": {
+        "original": 302,
+        "compressed": 68,
+        "regex": 0,
+        "css": {
+          "generic": 14,
+          "specific": 14
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/easylist#fanboy-lists"
+    },
+    {
+      "id": "reg_al",
+      "name": "🇦🇱al 🇽🇰xk: Adblock List for Albania",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_al.dnr.json",
+      "cosmetics": "cosmetics/reg_al.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_al.json",
+      "stats": {
+        "original": 558,
+        "compressed": 29,
+        "regex": 0,
+        "css": {
+          "generic": 6,
+          "specific": 109
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AnXh3L0/blocklist"
+    },
+    {
+      "id": "reg_ar",
+      "name": "🇪🇬eg 🇸🇦sa 🇲🇦ma 🇩🇿dz: Liste AR",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ar.dnr.json",
+      "cosmetics": "cosmetics/reg_ar.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_ar.json",
+      "stats": {
+        "original": 1651,
+        "compressed": 889,
+        "regex": 0,
+        "css": {
+          "generic": 242,
+          "specific": 244
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://forums.lanik.us/viewforum.php?f=98"
+    },
+    {
+      "id": "reg_bg",
+      "name": "🇧🇬bg: Bulgarian Adblock list",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_bg.dnr.json",
+      "cosmetics": "cosmetics/reg_bg.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_bg.json",
+      "stats": {
+        "original": 1169,
+        "compressed": 698,
+        "regex": 0,
+        "css": {
+          "generic": 11,
+          "specific": 185
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://stanev.org/abp/"
+    },
+    {
+      "id": "reg_cn",
+      "name": "🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文)",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_cn.dnr.json",
+      "cosmetics": "cosmetics/reg_cn.json",
+      "regex": "lists/reg_cn.regex.json",
+      "scriptlets": "scriptlets/reg_cn.json",
+      "stats": {
+        "original": 23097,
+        "compressed": 6586,
+        "regex": 26,
+        "css": {
+          "generic": 1299,
+          "specific": 3305
+        },
+        "scriptlets": 11
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_cz",
+      "name": "🇨🇿cz 🇸🇰sk: EasyList Czech and Slovak",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_cz.dnr.json",
+      "cosmetics": "cosmetics/reg_cz.json",
+      "regex": "lists/reg_cz.regex.json",
+      "scriptlets": "scriptlets/reg_cz.json",
+      "stats": {
+        "original": 790,
+        "compressed": 143,
+        "regex": 1,
+        "css": {
+          "generic": 58,
+          "specific": 223
+        },
+        "scriptlets": 154
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/tomasko126/easylistczechandslovak"
+    },
+    {
+      "id": "reg_de",
+      "name": "🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_de.dnr.json",
+      "cosmetics": "cosmetics/reg_de.json",
+      "regex": "lists/reg_de.regex.json",
+      "scriptlets": "scriptlets/reg_de.json",
+      "stats": {
+        "original": 6005,
+        "compressed": 1840,
+        "regex": 4,
+        "css": {
+          "generic": 418,
+          "specific": 2127
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://forums.lanik.us/viewforum.php?f=90"
+    },
+    {
+      "id": "reg_ee",
+      "name": "🇪🇪ee: Eesti saitidele kohandatud filter",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ee.dnr.json",
+      "cosmetics": "cosmetics/reg_ee.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_ee.json",
+      "stats": {
+        "original": 465,
+        "compressed": 73,
+        "regex": 0,
+        "css": {
+          "generic": 11,
+          "specific": 69
+        },
+        "scriptlets": 3
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/sander85/uBO-et"
+    },
+    {
+      "id": "reg_fi",
+      "name": "🇫🇮fi: Adblock List for Finland",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_fi.dnr.json",
+      "cosmetics": "cosmetics/reg_fi.json",
+      "regex": "lists/reg_fi.regex.json",
+      "scriptlets": "scriptlets/reg_fi.json",
+      "stats": {
+        "original": 1614,
+        "compressed": 178,
+        "regex": 3,
+        "css": {
+          "generic": 75,
+          "specific": 556
+        },
+        "scriptlets": 16
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/finnish-easylist-addition/finnish-easylist-addition"
+    },
+    {
+      "id": "reg_fr",
+      "name": "🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_fr.dnr.json",
+      "cosmetics": "cosmetics/reg_fr.json",
+      "regex": "lists/reg_fr.regex.json",
+      "scriptlets": "scriptlets/reg_fr.json",
+      "stats": {
+        "original": 15900,
+        "compressed": 4196,
+        "regex": 2,
+        "css": {
+          "generic": 1846,
+          "specific": 1712
+        },
+        "scriptlets": 8
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_gr",
+      "name": "🇬🇷gr 🇨🇾cy: Greek AdBlock Filter",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_gr.dnr.json",
+      "cosmetics": "cosmetics/reg_gr.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_gr.json",
+      "stats": {
+        "original": 1258,
+        "compressed": 437,
+        "regex": 0,
+        "css": {
+          "generic": 11,
+          "specific": 208
+        },
+        "scriptlets": 3
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/kargig/greek-adblockplus-filter"
+    },
+    {
+      "id": "reg_hr",
+      "name": "🇭🇷hr 🇷🇸rs: Dandelion Sprout's Serbo-Croatian filters",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_hr.dnr.json",
+      "cosmetics": "cosmetics/reg_hr.json",
+      "regex": "lists/reg_hr.regex.json",
+      "scriptlets": "scriptlets/reg_hr.json",
+      "stats": {
+        "original": 553,
+        "compressed": 80,
+        "regex": 1,
+        "css": {
+          "generic": 23,
+          "specific": 183
+        },
+        "scriptlets": 1
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/DandelionSprout/adfilt#readme"
+    },
+    {
+      "id": "reg_hu",
+      "name": "🇭🇺hu: hufilter",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_hu.dnr.json",
+      "cosmetics": "cosmetics/reg_hu.json",
+      "regex": "lists/reg_hu.regex.json",
+      "scriptlets": "scriptlets/reg_hu.json",
+      "stats": {
+        "original": 2257,
+        "compressed": 239,
+        "regex": 1,
+        "css": {
+          "generic": 75,
+          "specific": 498
+        },
+        "scriptlets": 49
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/hufilter/hufilter"
+    },
+    {
+      "id": "reg_id",
+      "name": "🇮🇩id 🇲🇾my: ABPindo",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_id.dnr.json",
+      "cosmetics": "cosmetics/reg_id.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_id.json",
+      "stats": {
+        "original": 10202,
+        "compressed": 3180,
+        "regex": 0,
+        "css": {
+          "generic": 4361,
+          "specific": 729
+        },
+        "scriptlets": 17
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/ABPindo/indonesianadblockrules"
+    },
+    {
+      "id": "reg_in",
+      "name": "🇮🇳in 🇱🇰lk 🇳🇵np: IndianList",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_in.dnr.json",
+      "cosmetics": "cosmetics/reg_in.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_in.json",
+      "stats": {
+        "original": 10443,
+        "compressed": 5250,
+        "regex": 0,
+        "css": {
+          "generic": 7,
+          "specific": 6015
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/mediumkreation/IndianList"
+    },
+    {
+      "id": "reg_ir",
+      "name": "🇮🇷ir: PersianBlocker",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ir.dnr.json",
+      "cosmetics": "cosmetics/reg_ir.json",
+      "regex": "lists/reg_ir.regex.json",
+      "scriptlets": "scriptlets/reg_ir.json",
+      "stats": {
+        "original": 4766,
+        "compressed": 710,
+        "regex": 1,
+        "css": {
+          "generic": 47,
+          "specific": 560
+        },
+        "scriptlets": 128
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/MasterKia/PersianBlocker"
+    },
+    {
+      "id": "reg_is",
+      "name": "🇮🇸is: Icelandic ABP List",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_is.dnr.json",
+      "cosmetics": "cosmetics/reg_is.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_is.json",
+      "stats": {
+        "original": 92,
+        "compressed": 11,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 35
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/brave/adblock-lists/issues"
+    },
+    {
+      "id": "reg_il",
+      "name": "🇮🇱il: EasyList Hebrew",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_il.dnr.json",
+      "cosmetics": "cosmetics/reg_il.json",
+      "regex": "lists/reg_il.regex.json",
+      "scriptlets": "scriptlets/reg_il.json",
+      "stats": {
+        "original": 1774,
+        "compressed": 270,
+        "regex": 3,
+        "css": {
+          "generic": 22,
+          "specific": 381
+        },
+        "scriptlets": 59
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist/EasyListHebrew"
+    },
+    {
+      "id": "reg_it",
+      "name": "🇮🇹it: EasyList Italy",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_it.dnr.json",
+      "cosmetics": "cosmetics/reg_it.json",
+      "regex": "lists/reg_it.regex.json",
+      "scriptlets": "scriptlets/reg_it.json",
+      "stats": {
+        "original": 4251,
+        "compressed": 1054,
+        "regex": 3,
+        "css": {
+          "generic": 426,
+          "specific": 2798
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://forums.lanik.us/viewforum.php?f=96"
+    },
+    {
+      "id": "reg_jp",
+      "name": "🇯🇵jp: AdGuard Japanese",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_jp.dnr.json",
+      "cosmetics": "cosmetics/reg_jp.json",
+      "regex": "lists/reg_jp.regex.json",
+      "scriptlets": "scriptlets/reg_jp.json",
+      "stats": {
+        "original": 12685,
+        "compressed": 1725,
+        "regex": 15,
+        "css": {
+          "generic": 496,
+          "specific": 5463
+        },
+        "scriptlets": 61
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_kr",
+      "name": "🇰🇷kr: List-KR Classic",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_kr.dnr.json",
+      "cosmetics": "cosmetics/reg_kr.json",
+      "regex": "lists/reg_kr.regex.json",
+      "scriptlets": "scriptlets/reg_kr.json",
+      "stats": {
+        "original": 4174,
+        "compressed": 956,
+        "regex": 149,
+        "css": {
+          "generic": 127,
+          "specific": 1069
+        },
+        "scriptlets": 11
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/List-KR/List-KR#readme"
+    },
+    {
+      "id": "reg_lt",
+      "name": "🇱🇹lt: EasyList Lithuania",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_lt.dnr.json",
+      "cosmetics": "cosmetics/reg_lt.json",
+      "regex": "lists/reg_lt.regex.json",
+      "scriptlets": "scriptlets/reg_lt.json",
+      "stats": {
+        "original": 1230,
+        "compressed": 521,
+        "regex": 2,
+        "css": {
+          "generic": 7,
+          "specific": 330
+        },
+        "scriptlets": 8
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/EasyList-Lithuania/easylist_lithuania"
+    },
+    {
+      "id": "reg_lv",
+      "name": "🇱🇻lv: Latvian List",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_lv.dnr.json",
+      "cosmetics": "cosmetics/reg_lv.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_lv.json",
+      "stats": {
+        "original": 467,
+        "compressed": 156,
+        "regex": 0,
+        "css": {
+          "generic": 6,
+          "specific": 78
+        },
+        "scriptlets": 1
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/Latvian-List/adblock-latvian"
+    },
+    {
+      "id": "reg_mk",
+      "name": "🇲🇰mk: Macedonian adBlock Filters",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_mk.dnr.json",
+      "cosmetics": "cosmetics/reg_mk.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_mk.json",
+      "stats": {
+        "original": 771,
+        "compressed": 160,
+        "regex": 0,
+        "css": {
+          "generic": 4,
+          "specific": 119
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/DeepSpaceHarbor/Macedonian-adBlock-Filters"
+    },
+    {
+      "id": "reg_nl",
+      "name": "🇳🇱nl 🇧🇪be: AdGuard Dutch",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_nl.dnr.json",
+      "cosmetics": "cosmetics/reg_nl.json",
+      "regex": "lists/reg_nl.regex.json",
+      "scriptlets": "scriptlets/reg_nl.json",
+      "stats": {
+        "original": 2180,
+        "compressed": 498,
+        "regex": 1,
+        "css": {
+          "generic": 92,
+          "specific": 1036
+        },
+        "scriptlets": 26
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_no",
+      "name": "🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_no.dnr.json",
+      "cosmetics": "cosmetics/reg_no.json",
+      "regex": "lists/reg_no.regex.json",
+      "scriptlets": "scriptlets/reg_no.json",
+      "stats": {
+        "original": 3596,
+        "compressed": 758,
+        "regex": 7,
+        "css": {
+          "generic": 340,
+          "specific": 837
+        },
+        "scriptlets": 1
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/DandelionSprout/adfilt"
+    },
+    {
+      "id": "reg_pl1",
+      "name": "🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_pl1.dnr.json",
+      "cosmetics": "cosmetics/reg_pl1.json",
+      "regex": "lists/reg_pl1.regex.json",
+      "scriptlets": "scriptlets/reg_pl1.json",
+      "stats": {
+        "original": 6704,
+        "compressed": 808,
+        "regex": 39,
+        "css": {
+          "generic": 252,
+          "specific": 3466
+        },
+        "scriptlets": 80
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/MajkiIT/polish-ads-filter"
+    },
+    {
+      "id": "reg_pl2",
+      "name": "🇵🇱pl: CERT.PL's Warning List",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_pl2.dnr.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": "scriptlets/reg_pl2.json",
+      "stats": {
+        "original": 28719,
+        "compressed": 1,
+        "regex": 0,
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://cert.pl/lista-ostrzezen/"
+    },
+    {
+      "id": "reg_ro",
+      "name": "🇷🇴ro 🇲🇩md: Romanian Ad (ROad) Block List Light",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ro.dnr.json",
+      "cosmetics": "cosmetics/reg_ro.json",
+      "regex": "lists/reg_ro.regex.json",
+      "scriptlets": "scriptlets/reg_ro.json",
+      "stats": {
+        "original": 2767,
+        "compressed": 447,
+        "regex": 3,
+        "css": {
+          "generic": 17,
+          "specific": 586
+        },
+        "scriptlets": 12
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/tcptomato/ROad-Block"
+    },
+    {
+      "id": "reg_ru",
+      "name": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ru.dnr.json",
+      "cosmetics": "cosmetics/reg_ru.json",
+      "regex": "lists/reg_ru.regex.json",
+      "scriptlets": "scriptlets/reg_ru.json",
+      "stats": {
+        "original": 33066,
+        "compressed": 5979,
+        "regex": 16,
+        "css": {
+          "generic": 1292,
+          "specific": 7705
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://forums.lanik.us/viewforum.php?f=102"
+    },
+    {
+      "id": "reg_ru2",
+      "name": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ru2.dnr.json",
+      "cosmetics": "cosmetics/reg_ru2.json",
+      "regex": "lists/reg_ru2.regex.json",
+      "scriptlets": "scriptlets/reg_ru2.json",
+      "stats": {
+        "original": 1901,
+        "compressed": 993,
+        "regex": 2,
+        "css": {
+          "generic": 34,
+          "specific": 107
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://forums.lanik.us/viewforum.php?f=102"
+    },
+    {
+      "id": "reg_es1",
+      "name": "🇪🇸es 🇦🇷ar 🇲🇽mx 🇨🇴co: EasyList Spanish",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_es1.dnr.json",
+      "cosmetics": "cosmetics/reg_es1.json",
+      "regex": "lists/reg_es1.regex.json",
+      "scriptlets": "scriptlets/reg_es1.json",
+      "stats": {
+        "original": 2701,
+        "compressed": 578,
+        "regex": 8,
+        "css": {
+          "generic": 266,
+          "specific": 1441
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://forums.lanik.us/viewforum.php?f=103"
+    },
+    {
+      "id": "reg_es2",
+      "name": "🇪🇸es 🇦🇷ar 🇧🇷br 🇵🇹pt: AdGuard Spanish/Portuguese",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_es2.dnr.json",
+      "cosmetics": "cosmetics/reg_es2.json",
+      "regex": "lists/reg_es2.regex.json",
+      "scriptlets": "scriptlets/reg_es2.json",
+      "stats": {
+        "original": 6528,
+        "compressed": 920,
+        "regex": 7,
+        "css": {
+          "generic": 174,
+          "specific": 1977
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_si",
+      "name": "🇸🇮si: Slovenian List",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_si.dnr.json",
+      "cosmetics": "cosmetics/reg_si.json",
+      "regex": null,
+      "scriptlets": "scriptlets/reg_si.json",
+      "stats": {
+        "original": 531,
+        "compressed": 82,
+        "regex": 0,
+        "css": {
+          "generic": 4,
+          "specific": 152
+        },
+        "scriptlets": 0
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/betterwebleon/slovenian-list"
+    },
+    {
+      "id": "reg_se",
+      "name": "🇸🇪se: Frellwit's Swedish Filter",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_se.dnr.json",
+      "cosmetics": "cosmetics/reg_se.json",
+      "regex": "lists/reg_se.regex.json",
+      "scriptlets": "scriptlets/reg_se.json",
+      "stats": {
+        "original": 3710,
+        "compressed": 1417,
+        "regex": 1,
+        "css": {
+          "generic": 305,
+          "specific": 1513
+        },
+        "scriptlets": 226
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/lassekongo83/Frellwits-filter-lists"
+    },
+    {
+      "id": "reg_th",
+      "name": "🇹🇭th: EasyList Thailand",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_th.dnr.json",
+      "cosmetics": "cosmetics/reg_th.json",
+      "regex": "lists/reg_th.regex.json",
+      "scriptlets": "scriptlets/reg_th.json",
+      "stats": {
+        "original": 1589,
+        "compressed": 759,
+        "regex": 2,
+        "css": {
+          "generic": 7,
+          "specific": 184
+        },
+        "scriptlets": 7
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/easylist-thailand/easylist-thailand"
+    },
+    {
+      "id": "reg_tr",
+      "name": "🇹🇷tr: AdGuard Turkish",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_tr.dnr.json",
+      "cosmetics": "cosmetics/reg_tr.json",
+      "regex": "lists/reg_tr.regex.json",
+      "scriptlets": "scriptlets/reg_tr.json",
+      "stats": {
+        "original": 7591,
+        "compressed": 1325,
+        "regex": 19,
+        "css": {
+          "generic": 273,
+          "specific": 4223
+        },
+        "scriptlets": 2
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_ua",
+      "name": "🇺🇦ua: AdGuard Ukrainian",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_ua.dnr.json",
+      "cosmetics": "cosmetics/reg_ua.json",
+      "regex": "lists/reg_ua.regex.json",
+      "scriptlets": "scriptlets/reg_ua.json",
+      "stats": {
+        "original": 5990,
+        "compressed": 1456,
+        "regex": 20,
+        "css": {
+          "generic": 654,
+          "specific": 1284
+        },
+        "scriptlets": 165
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
+    },
+    {
+      "id": "reg_vn",
+      "name": "🇻🇳vn: ABPVN List",
+      "category": "regions",
+      "type": "full",
+      "remotePath": "lists/reg_vn.dnr.json",
+      "cosmetics": "cosmetics/reg_vn.json",
+      "regex": "lists/reg_vn.regex.json",
+      "scriptlets": "scriptlets/reg_vn.json",
+      "stats": {
+        "original": 1187,
+        "compressed": 298,
+        "regex": 2,
+        "css": {
+          "generic": 43,
+          "specific": 355
+        },
+        "scriptlets": 148
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": null,
+      "attribution": null,
+      "homeURL": "https://abpvn.com/"
+    },
+    {
+      "id": "live_fake",
+      "name": "Fake Protection - Blocks scams, traps & fakes",
+      "category": "live",
+      "type": "domain",
+      "remotePath": "live/live_fake.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": null,
+      "stats": {
+        "original": 16839,
+        "domains": 16839,
+        "compressed": 5
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": "HaGeZi DNS Blocklist",
+      "attribution": "Powered by PhishTank & OpenPhish feeds",
+      "homeURL": null
+    },
+    {
+      "id": "live_shortener",
+      "name": "URL Shortener - Blocks URL shorteners",
+      "category": "live",
+      "type": "domain",
+      "remotePath": "live/live_shortener.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": null,
+      "stats": {
+        "original": 9952,
+        "domains": 9952,
+        "compressed": 3
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": "HaGeZi DNS Blocklist",
+      "attribution": "Curated by HaGeZi",
+      "homeURL": null
+    },
+    {
+      "id": "live_dyndns",
+      "name": "Dynamic DNS - Prevents dynamic DNS abuse",
+      "category": "live",
+      "type": "domain",
+      "remotePath": "live/live_dyndns.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": null,
+      "stats": {
+        "original": 1524,
+        "domains": 1524,
+        "compressed": 1
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": "HaGeZi DNS Blocklist",
+      "attribution": "Powered by PhishTank & OpenPhish feeds",
+      "homeURL": null
+    },
+    {
+      "id": "live_badware",
+      "name": "Badware Hoster - Blocks bad hosting nodes",
+      "category": "live",
+      "type": "domain",
+      "remotePath": "live/live_badware.json",
+      "cosmetics": null,
+      "regex": null,
+      "scriptlets": null,
+      "stats": {
+        "original": 1257,
+        "domains": 1257,
+        "compressed": 1
+      },
+      "exclusiveGroup": null,
+      "enabledByDefault": false,
+      "source": "HaGeZi DNS Blocklist",
+      "attribution": "Powered by URLHaus malware intelligence",
+      "homeURL": null
+    }
+  ],
+  "updatedAt": "2026-08-06T19:33:13.341Z"
+}

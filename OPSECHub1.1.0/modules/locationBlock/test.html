@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSECHub - Location Guard Diagnostics</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-card: #121824;
+            --text-primary: #ffffff;
+            --text-secondary: #b0bec5;
+            --primary-color: #00e5ff;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            margin-top: 40px;
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 22px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        p.desc {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        .status-banner {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-banner.active {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--primary-color);
+        }
+        .status-banner.inactive {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            color: var(--danger-color);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 5px;
+        }
+        .audit-list {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 120px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+        button {
+            flex: 1;
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        button.btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        button.btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ Location Guard Sandbox</h1>
+        <p class="desc">
+            This local diagnostics panel queries geolocation parameters to evaluate location exposure and tracking overrides.
+        </p>
+
+        <div id="status-banner" class="status-banner inactive">
+            <span id="status-text">Location Guard: Disabled / Unpatched</span>
+            <span style="font-size: 11px; padding: 3px 8px; background: rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-weight: bold;">Standard Realm</span>
+        </div>
+
+        <div class="results-grid">
+            <div class="card">
+                <div class="section-title">Current Coordinates Audit</div>
+                <div class="audit-list" id="coord-output">Click "Query Coordinates" to run diagnostics.</div>
+                <div class="btn-container">
+                    <button id="btn-query">Query Coordinates</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">Live Tracking Audit (watchPosition)</div>
+                <div class="audit-list" id="track-output">Click "Start Tracking" to run diagnostics.</div>
+                <div class="btn-container">
+                    <button id="btn-track">Start Tracking</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container" style="justify-content: center; margin-top: 25px;">
+            <button id="btn-refresh" class="btn-outline" style="max-width: 250px;">Re-Evaluate Page Status</button>
+        </div>
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>
